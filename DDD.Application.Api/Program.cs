@@ -7,7 +7,6 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 
 //IOC - Dependency Injection
-//builder.Services.AddScoped<IAlunoRepository, AlunoRepository>();
 builder.Services.AddScoped<IClinicaRepository, ClinicaRepository>();
 builder.Services.AddScoped<SqlServerContext, SqlServerContext>();
 
