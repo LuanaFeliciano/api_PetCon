@@ -5,6 +5,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace DDD.Domain.SecretariaContext
@@ -20,13 +21,14 @@ namespace DDD.Domain.SecretariaContext
         public string Email { get; set; }
 
         [Required]
-        public string UsuarioAcesso { get; private set; }
-
-        [Required]
-        public string SenhaAcesso { get; private set; }
+        public string SenhaAcesso { get; set; }
 
         public DateTime DataCadastro { get; set; }
 
         public bool Ativo { get; set; }
+
+        [JsonIgnore]
+        // Propriedade de navegação para veterinários associados à clínica
+        public List<Veterinario>? Veterinarios { get; set; }
     }
 }

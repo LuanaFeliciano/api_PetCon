@@ -74,5 +74,29 @@ namespace DDD.Infra.SqlServer.Repositories
                 throw ex;
             }
         }
+
+        public void AdicionarVeterinario(int clinicaId, Veterinario veterinario)
+        {
+            var clinica = _context.Clinicas.Include(c => c.Veterinarios).FirstOrDefault(c => c.ClinicaId == clinicaId);
+            if (clinica != null)
+            {
+                clinica.Veterinarios.Add(veterinario);
+                _context.SaveChanges();
+            }
+        }
+
+        public void RemoverVeterinario(int clinicaId, int veterinarioId)
+        {
+            var clinica = _context.Clinicas.Include(c => c.Veterinarios).FirstOrDefault(c => c.ClinicaId == clinicaId);
+            if (clinica != null)
+            {
+                var veterinario = clinica.Veterinarios.FirstOrDefault(v => v.UserId == veterinarioId);
+                if (veterinario != null)
+                {
+                    clinica.Veterinarios.Remove(veterinario);
+                    _context.SaveChanges();
+                }
+            }
+        }
     }
 }

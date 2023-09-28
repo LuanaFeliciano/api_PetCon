@@ -10,14 +10,16 @@ namespace DDD.Application.Api.Controllers
     public class ClinicaController : ControllerBase
     {
         readonly IClinicaRepository _clinicaRepository;
+        readonly IVeterinarioRepository _veterinarioRepository;
 
         //Dependency Injection
-        public ClinicaController(IClinicaRepository clinicaRepository)
+        public ClinicaController(IClinicaRepository clinicaRepository, IVeterinarioRepository veterinarioRepository)
         {
             _clinicaRepository = clinicaRepository;
+            _veterinarioRepository = veterinarioRepository;
         }
 
-        
+
         [HttpGet]
         public ActionResult<List<Clinica>> Get()
         {
@@ -30,13 +32,27 @@ namespace DDD.Application.Api.Controllers
             return Ok(_clinicaRepository.GetClinicaById(id));
         }
 
-        [HttpPost]
+        [HttpGet("{clinicaId}/veterinarios")]
+        public ActionResult VeterinariosDaClinica(int clinicaId)
+        {
+            var veterinarios = _veterinarioRepository.GetVeterinariosByClinicaId(clinicaId);
+            return Ok(veterinarios);
+        }
+
+        [HttpPost("api/Clinica/Create")] // Método para criar uma clínica
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public ActionResult<Clinica> CreateClinica(Clinica clinica)
         {
             _clinicaRepository.InsertClinica(clinica);
             return CreatedAtAction(nameof(GetById), new { id = clinica.ClinicaId }, clinica);
+        }
+
+        [HttpPost("api/Clinica/AssociarVeterinario")]
+        public IActionResult AssociarVeterinario(int clinicaId, Veterinario veterinario)
+        {
+            _clinicaRepository.AdicionarVeterinario(clinicaId, veterinario);
+            return Ok("Veterinario Cadastrado com sucesso!");
         }
 
         [HttpPut]
@@ -58,24 +74,40 @@ namespace DDD.Application.Api.Controllers
         }
 
         // DELETE api/values/5
-        [HttpDelete()]
-        public ActionResult Delete([FromBody] Clinica clinica)
+        [HttpDelete("api/Clinica/Delete/{id}")]
+        public ActionResult Delete(int id)
         {
             try
             {
+                var clinica = _clinicaRepository.GetClinicaById(id);
+
                 if (clinica == null)
                     return NotFound();
 
                 _clinicaRepository.DeleteClinica(clinica);
-                return Ok("Clinica Removida com sucesso!");
+                return Ok("Clínica removida com sucesso!");
             }
             catch (Exception ex)
             {
-
                 throw ex;
             }
-
         }
+
+
+        [HttpDelete("api/Clinica/DesassociarVeterinario")]
+        public ActionResult DesassociarVeterinario(int clinicaId, int veterinarioId)
+        {
+            try
+            {
+                _clinicaRepository.RemoverVeterinario(clinicaId, veterinarioId);
+                return Ok("Veterinário removido com sucesso da clínica.");
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
 
     }
 }
