@@ -40,5 +40,20 @@ namespace DDD.Infra.SqlServer.Repositories
 
             return veterinarios;
         }
+
+        public void UpdateVeterinario(Veterinario veterinario)
+        {
+            try
+            {
+                _context.Entry(veterinario).State = EntityState.Modified;
+                _context.SaveChanges();
+
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
     }
 }

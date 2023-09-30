@@ -20,6 +20,14 @@ namespace DDD.Infra.SqlServer
 
             modelBuilder.Entity<User>().UseTpcMappingStrategy();
 
+            modelBuilder.Entity<User>().
+                Property(c => c.DataCadastro)
+                .ValueGeneratedNever();
+
+            modelBuilder.Entity<Clinica>()
+                .Property(c => c.DataCadastro)
+                .ValueGeneratedNever();
+
         }
 
         public DbSet<Clinica> Clinicas { get; set; }

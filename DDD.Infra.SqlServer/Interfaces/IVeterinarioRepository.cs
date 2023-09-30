@@ -11,7 +11,7 @@ namespace DDD.Infra.SqlServer.Interfaces
     {
         List<Veterinario> GetVeterinarios();
         Veterinario GetVeterinarioById(int id);
-
+        public void UpdateVeterinario(Veterinario veterinario);
         // Método para buscar veterinários associados a uma clínica específica
         List<Veterinario> GetVeterinariosByClinicaId(int clinicaId);
 

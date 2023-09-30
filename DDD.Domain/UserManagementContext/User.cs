@@ -20,9 +20,12 @@ namespace DDD.Domain.UserManagementContext
 
         public string Email { get; set; }
 
-        public DateTime DataCadastro { get; set; }
+        public DateTime DataCadastro { get; private set; }
 
         public bool Ativo { get; set; }
-
+        public User()
+        {
+            DataCadastro = DateTime.Now;
+        }
     }
 }

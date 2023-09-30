@@ -23,12 +23,17 @@ namespace DDD.Domain.SecretariaContext
         [Required]
         public string SenhaAcesso { get; set; }
 
-        public DateTime DataCadastro { get; set; }
-
+        public DateTime DataCadastro { get; private set; }
         public bool Ativo { get; set; }
 
         [JsonIgnore]
         // Propriedade de navegação para veterinários associados à clínica
         public List<Veterinario>? Veterinarios { get; set; }
+
+        public Clinica()
+        {
+            DataCadastro = DateTime.Now; 
+        }
     }
+
 }

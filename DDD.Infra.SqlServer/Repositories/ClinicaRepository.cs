@@ -19,20 +19,6 @@ namespace DDD.Infra.SqlServer.Repositories
             _context = context;
         }
 
-        public void DeleteClinica(Clinica clinica)
-        {
-            try
-            {
-                _context.Set<Clinica>().Remove(clinica);
-                _context.SaveChanges();
-            }
-            catch (Exception ex)
-            {
-
-                throw ex;
-            }
-        }
-
         public Clinica GetClinicaById(int id)
         {
             return _context.Clinicas.Find(id);
@@ -41,7 +27,7 @@ namespace DDD.Infra.SqlServer.Repositories
         public List<Clinica> GetClinicas()
         {
 
-            var list = _context.Clinicas.ToList();
+            var list = _context.Clinicas.ToList().Where(c => c.Ativo).ToList();
             return list;
 
         }
@@ -50,15 +36,16 @@ namespace DDD.Infra.SqlServer.Repositories
         {
             try
             {
+
                 _context.Clinicas.Add(clinica);
                 _context.SaveChanges();
             }
             catch (Exception ex)
             {
                 //log exception
-
             }
         }
+
 
         public void UpdateClinica(Clinica clinica)
         {
