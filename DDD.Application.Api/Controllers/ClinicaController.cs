@@ -36,8 +36,17 @@ namespace DDD.Application.Api.Controllers
         public ActionResult VeterinariosDaClinica(int clinicaId)
         {
             var veterinarios = _veterinarioRepository.GetVeterinariosByClinicaId(clinicaId);
-            return Ok(veterinarios);
+
+            if (veterinarios.Any())
+            {
+                return Ok(veterinarios);
+            }
+            else
+            {
+                return NotFound("Sua clínica não possui veterinários ainda. Cadastre-os.");
+            }
         }
+
 
         [HttpPost("api/Clinica/Create")] // Método para criar uma clínica
         [ProducesResponseType(StatusCodes.Status201Created)]
@@ -84,8 +93,9 @@ namespace DDD.Application.Api.Controllers
                 if (clinica == null)
                     return NotFound();
 
-                _clinicaRepository.DeleteClinica(clinica);
-                return Ok("Clínica removida com sucesso!");
+                clinica.Ativo = false;
+                _clinicaRepository.UpdateClinica(clinica);
+                return Ok("Clínica desativada com sucesso!");
             }
             catch (Exception ex)
             {
