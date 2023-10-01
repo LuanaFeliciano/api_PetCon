@@ -1,4 +1,5 @@
-﻿using DDD.Domain.SecretariaContext;
+﻿using DDD.Domain.ClinicaContext;
+using DDD.Domain.SecretariaContext;
 using DDD.Domain.UserManagementContext;
 using Microsoft.EntityFrameworkCore;
 
@@ -33,6 +34,7 @@ namespace DDD.Infra.SqlServer
         public DbSet<Clinica> Clinicas { get; set; }
         public DbSet<Veterinario> Veterinarios { get; set; }
         public DbSet<User> Users { get; set; }
+        public DbSet<Consulta> Consultas { get; set; }
 
     }
 }
