@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DDD.Domain.ClinicaContext;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,5 +9,8 @@ namespace DDD.Infra.SqlServer.Interfaces
 {
     public interface IConsultaRepository
     {
+        public List<Consulta> GetConsultas();
+        public Consulta GetConsultaById(int id);
+
     }
 }

@@ -12,6 +12,6 @@ namespace DDD.Domain.ClinicaContext
     {
         public int IdConsulta { get; set; }
         public Veterinario IdVeterinario { get; set; } 
-        public <IList<Veterinario>> Veterinarios { get; set; }
+        public List<Veterinario> Veterinarios { get; set; }
     }
 }
