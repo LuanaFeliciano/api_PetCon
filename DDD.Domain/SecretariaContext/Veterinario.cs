@@ -14,5 +14,6 @@ namespace DDD.Domain.SecretariaContext
 
         [JsonIgnore]
         public Clinica? Clinica { get; set; } // Propriedade de navegação para a clínica associada
+
     }
 }
