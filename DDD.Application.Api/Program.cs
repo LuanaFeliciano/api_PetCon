@@ -10,7 +10,9 @@ var builder = WebApplication.CreateBuilder(args);
 //IOC - Dependency Injection
 builder.Services.AddScoped<IClinicaRepository, ClinicaRepository>();
 builder.Services.AddScoped<IVeterinarioRepository, VeterinarioRepository>();
-builder.Services.AddScoped<IClinicaRepository, ClinicaRepository>();
+builder.Services.AddScoped<IConsultaRepository, ConsultaRepository>();
+builder.Services.AddScoped<IAnimalRepository, AnimalRepository>();
+builder.Services.AddScoped<IAuthenticateRepository, AuthenticateRepository>();
 builder.Services.AddScoped<SqlServerContext, SqlServerContext>();
 
 builder.Services.AddControllers().AddJsonOptions(x =>

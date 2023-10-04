@@ -1,4 +1,5 @@
-﻿using DDD.Domain.ClinicaContext;
+﻿using DDD.Domain.ClienteContext;
+using DDD.Domain.ClinicaContext;
 using DDD.Domain.SecretariaContext;
 using DDD.Domain.UserManagementContext;
 using Microsoft.EntityFrameworkCore;
@@ -28,12 +29,17 @@ namespace DDD.Infra.SqlServer
             modelBuilder.Entity<Clinica>()
                 .Property(c => c.DataCadastro)
                 .ValueGeneratedNever();
+
+            modelBuilder.Entity<Consulta>()
+                .HasKey(c => c.IdConsulta);
+
         }
 
         public DbSet<Clinica> Clinicas { get; set; }
         public DbSet<Veterinario> Veterinarios { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<Consulta> Consultas { get; set; }
+        public DbSet<Animal> Animais { get; set; }
 
     }
 }
