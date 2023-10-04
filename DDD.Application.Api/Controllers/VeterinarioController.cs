@@ -9,11 +9,13 @@ namespace DDD.Application.Api.Controllers
     [ApiController]
     public class VeterinarioController : ControllerBase
     {
+        readonly IClinicaRepository _clinicaRepository;
         readonly IVeterinarioRepository _veterinarioRepository;
 
         //Dependency Injection
-        public VeterinarioController(IVeterinarioRepository veterinarioRepository)
+        public VeterinarioController(IClinicaRepository clinicaRepository, IVeterinarioRepository veterinarioRepository)
         {
+            _clinicaRepository = clinicaRepository;
             _veterinarioRepository = veterinarioRepository;
         }
 
@@ -28,6 +30,28 @@ namespace DDD.Application.Api.Controllers
         public ActionResult<Veterinario> GetById(int id)
         {
             return Ok(_veterinarioRepository.GetVeterinarioById(id));
+        }
+
+        [HttpGet("{clinicaId}/veterinarios")]
+        public ActionResult VeterinariosDaClinica(int clinicaId)
+        {
+            var veterinarios = _veterinarioRepository.GetVeterinariosByClinicaId(clinicaId);
+
+            if (veterinarios.Any())
+            {
+                return Ok(veterinarios);
+            }
+            else
+            {
+                return NotFound("Sua clínica não possui veterinários ainda. Cadastre-os.");
+            }
+        }
+
+        [HttpPost("api/Clinica/AssociarVeterinario")]
+        public IActionResult AssociarVeterinario(int clinicaId, Veterinario veterinario)
+        {
+            _clinicaRepository.AdicionarVeterinario(clinicaId, veterinario);
+            return Ok("Veterinario Cadastrado com sucesso!");
         }
 
         [HttpPut]
@@ -45,6 +69,20 @@ namespace DDD.Application.Api.Controllers
             {
 
                 throw;
+            }
+        }
+
+        [HttpDelete("api/Clinica/DesassociarVeterinario")]
+        public ActionResult DesassociarVeterinario(int clinicaId, int veterinarioId)
+        {
+            try
+            {
+                _clinicaRepository.RemoverVeterinario(clinicaId, veterinarioId);
+                return Ok("Veterinário removido com sucesso da clínica.");
+            }
+            catch (Exception ex)
+            {
+                throw ex;
             }
         }
 

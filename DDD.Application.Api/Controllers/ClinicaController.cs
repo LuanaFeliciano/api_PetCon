@@ -1,5 +1,6 @@
 using DDD.Domain.SecretariaContext;
 using DDD.Infra.SqlServer.Interfaces;
+using DDD.Infra.SqlServer.Repositories;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -11,12 +12,14 @@ namespace DDD.Application.Api.Controllers
     {
         readonly IClinicaRepository _clinicaRepository;
         readonly IVeterinarioRepository _veterinarioRepository;
+        readonly IAuthenticateRepository _authenticationRepository;
 
         //Dependency Injection
-        public ClinicaController(IClinicaRepository clinicaRepository, IVeterinarioRepository veterinarioRepository)
+        public ClinicaController(IClinicaRepository clinicaRepository, IVeterinarioRepository veterinarioRepository, IAuthenticateRepository authenticateRepository)
         {
             _clinicaRepository = clinicaRepository;
             _veterinarioRepository = veterinarioRepository;
+            _authenticationRepository = authenticateRepository;
         }
 
 
@@ -32,21 +35,6 @@ namespace DDD.Application.Api.Controllers
             return Ok(_clinicaRepository.GetClinicaById(id));
         }
 
-        [HttpGet("{clinicaId}/veterinarios")]
-        public ActionResult VeterinariosDaClinica(int clinicaId)
-        {
-            var veterinarios = _veterinarioRepository.GetVeterinariosByClinicaId(clinicaId);
-
-            if (veterinarios.Any())
-            {
-                return Ok(veterinarios);
-            }
-            else
-            {
-                return NotFound("Sua clínica não possui veterinários ainda. Cadastre-os.");
-            }
-        }
-
 
         [HttpPost("api/Clinica/Create")] // Método para criar uma clínica
         [ProducesResponseType(StatusCodes.Status201Created)]
@@ -55,13 +43,6 @@ namespace DDD.Application.Api.Controllers
         {
             _clinicaRepository.InsertClinica(clinica);
             return CreatedAtAction(nameof(GetById), new { id = clinica.ClinicaId }, clinica);
-        }
-
-        [HttpPost("api/Clinica/AssociarVeterinario")]
-        public IActionResult AssociarVeterinario(int clinicaId, Veterinario veterinario)
-        {
-            _clinicaRepository.AdicionarVeterinario(clinicaId, veterinario);
-            return Ok("Veterinario Cadastrado com sucesso!");
         }
 
         [HttpPut]
@@ -103,21 +84,25 @@ namespace DDD.Application.Api.Controllers
             }
         }
 
-
-        [HttpDelete("api/Clinica/DesassociarVeterinario")]
-        public ActionResult DesassociarVeterinario(int clinicaId, int veterinarioId)
+        [HttpPost("api/Clinica/Login")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+        public ActionResult Login(string email, string senha)
         {
-            try
+            if (string.IsNullOrEmpty(email) || string.IsNullOrEmpty(senha))
             {
-                _clinicaRepository.RemoverVeterinario(clinicaId, veterinarioId);
-                return Ok("Veterinário removido com sucesso da clínica.");
+                return BadRequest("Email e senha são obrigatórios.");
             }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
 
+            var clinica = _authenticationRepository.Authenticate(email, senha);
+
+            if (clinica == null)
+            {
+                return Unauthorized("Email ou senha incorretos.");
+            }
+
+            return Ok("Login bem-sucedido");
+        }
 
     }
 }

@@ -24,6 +24,24 @@ namespace DDD.Infra.SqlServer.Migrations
 
             modelBuilder.HasSequence("UserSequence");
 
+            modelBuilder.Entity("DDD.Domain.ClinicaContext.Consulta", b =>
+                {
+                    b.Property<int>("IdConsulta")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdConsulta"));
+
+                    b.Property<int>("IdVeterinarioUserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("IdConsulta");
+
+                    b.HasIndex("IdVeterinarioUserId");
+
+                    b.ToTable("Consultas");
+                });
+
             modelBuilder.Entity("DDD.Domain.SecretariaContext.Clinica", b =>
                 {
                     b.Property<int>("ClinicaId")
@@ -96,9 +114,25 @@ namespace DDD.Infra.SqlServer.Migrations
                     b.Property<int>("ClinicaId")
                         .HasColumnType("int");
 
+                    b.Property<int?>("ConsultaIdConsulta")
+                        .HasColumnType("int");
+
                     b.HasIndex("ClinicaId");
 
+                    b.HasIndex("ConsultaIdConsulta");
+
                     b.ToTable("Veterinarios");
+                });
+
+            modelBuilder.Entity("DDD.Domain.ClinicaContext.Consulta", b =>
+                {
+                    b.HasOne("DDD.Domain.SecretariaContext.Veterinario", "IdVeterinario")
+                        .WithMany()
+                        .HasForeignKey("IdVeterinarioUserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("IdVeterinario");
                 });
 
             modelBuilder.Entity("DDD.Domain.SecretariaContext.Veterinario", b =>
@@ -109,7 +143,16 @@ namespace DDD.Infra.SqlServer.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("DDD.Domain.ClinicaContext.Consulta", null)
+                        .WithMany("Veterinarios")
+                        .HasForeignKey("ConsultaIdConsulta");
+
                     b.Navigation("Clinica");
+                });
+
+            modelBuilder.Entity("DDD.Domain.ClinicaContext.Consulta", b =>
+                {
+                    b.Navigation("Veterinarios");
                 });
 
             modelBuilder.Entity("DDD.Domain.SecretariaContext.Clinica", b =>
