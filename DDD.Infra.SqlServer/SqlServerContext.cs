@@ -28,7 +28,6 @@ namespace DDD.Infra.SqlServer
             modelBuilder.Entity<Clinica>()
                 .Property(c => c.DataCadastro)
                 .ValueGeneratedNever();
-
         }
 
         public DbSet<Clinica> Clinicas { get; set; }
