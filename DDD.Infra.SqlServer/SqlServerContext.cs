@@ -33,6 +33,8 @@ namespace DDD.Infra.SqlServer
             modelBuilder.Entity<Consulta>()
                 .HasKey(c => c.IdConsulta);
 
+
+
         }
 
         public DbSet<Clinica> Clinicas { get; set; }
@@ -40,6 +42,7 @@ namespace DDD.Infra.SqlServer
         public DbSet<User> Users { get; set; }
         public DbSet<Consulta> Consultas { get; set; }
         public DbSet<Animal> Animais { get; set; }
+        public DbSet<Cliente> Clientes { get; set; }
 
     }
 }

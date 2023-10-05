@@ -1,8 +1,14 @@
 {
   "version": 2,
+<<<<<<< HEAD
+  "dgSpecHash": "lD5FqUn62OGrs70I4bO15JbhQH/2a320Bo9lCTHmut2uKdP88T9wELdjFTr7F8zlemRuAvi9D1pYkPNjD9qCmA==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\windows\\Downloads\\api_PetCon-KEVIN\\DDD.Domain\\DDD.Domain.csproj",
+=======
   "dgSpecHash": "ni8qglfB7O7+pm9ajdVyfjKIGuQACPlAh/zixQG4UugEzgMQavVyaLr/5wCcpLPMyTwIK+JB4Pkq7AM8hEm/dA==",
   "success": true,
   "projectFilePath": "C:\\Users\\luana\\source\\repos\\PetCon\\PlataformaPetConDDD\\DDD.Domain\\DDD.Domain.csproj",
+>>>>>>> db196dce23e6feb5694d58b56dd256d78ec4e172
   "expectedPackageFiles": [],
   "logs": []
 }
