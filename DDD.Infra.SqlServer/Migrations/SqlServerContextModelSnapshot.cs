@@ -24,6 +24,64 @@ namespace DDD.Infra.SqlServer.Migrations
 
             modelBuilder.HasSequence("UserSequence");
 
+            modelBuilder.Entity("DDD.Domain.ClienteContext.Animal", b =>
+                {
+                    b.Property<int>("AnimalId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("AnimalId"));
+
+                    b.Property<bool>("Ativo")
+                        .HasColumnType("bit");
+
+                    b.Property<int?>("ClienteUserId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Idade")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Nome")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Raca")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Sexo")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Tipo")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("AnimalId");
+
+                    b.HasIndex("ClienteUserId");
+
+                    b.ToTable("Animais");
+                });
+
+            modelBuilder.Entity("DDD.Domain.ClinicaContext.Consulta", b =>
+                {
+                    b.Property<int>("IdConsulta")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdConsulta"));
+
+                    b.Property<int>("IdVeterinarioUserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("IdConsulta");
+
+                    b.HasIndex("IdVeterinarioUserId");
+
+                    b.ToTable("Consultas");
+                });
+
             modelBuilder.Entity("DDD.Domain.SecretariaContext.Clinica", b =>
                 {
                     b.Property<int>("ClinicaId")
@@ -89,6 +147,20 @@ namespace DDD.Infra.SqlServer.Migrations
                     b.UseTpcMappingStrategy();
                 });
 
+            modelBuilder.Entity("DDD.Domain.ClienteContext.Cliente", b =>
+                {
+                    b.HasBaseType("DDD.Domain.UserManagementContext.User");
+
+                    b.Property<string>("Senha")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Telefone")
+                        .HasColumnType("int");
+
+                    b.ToTable("Clientes");
+                });
+
             modelBuilder.Entity("DDD.Domain.SecretariaContext.Veterinario", b =>
                 {
                     b.HasBaseType("DDD.Domain.UserManagementContext.User");
@@ -96,9 +168,32 @@ namespace DDD.Infra.SqlServer.Migrations
                     b.Property<int>("ClinicaId")
                         .HasColumnType("int");
 
+                    b.Property<int?>("ConsultaIdConsulta")
+                        .HasColumnType("int");
+
                     b.HasIndex("ClinicaId");
 
+                    b.HasIndex("ConsultaIdConsulta");
+
                     b.ToTable("Veterinarios");
+                });
+
+            modelBuilder.Entity("DDD.Domain.ClienteContext.Animal", b =>
+                {
+                    b.HasOne("DDD.Domain.ClienteContext.Cliente", null)
+                        .WithMany("Animais")
+                        .HasForeignKey("ClienteUserId");
+                });
+
+            modelBuilder.Entity("DDD.Domain.ClinicaContext.Consulta", b =>
+                {
+                    b.HasOne("DDD.Domain.SecretariaContext.Veterinario", "IdVeterinario")
+                        .WithMany()
+                        .HasForeignKey("IdVeterinarioUserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("IdVeterinario");
                 });
 
             modelBuilder.Entity("DDD.Domain.SecretariaContext.Veterinario", b =>
@@ -109,12 +204,26 @@ namespace DDD.Infra.SqlServer.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("DDD.Domain.ClinicaContext.Consulta", null)
+                        .WithMany("Veterinarios")
+                        .HasForeignKey("ConsultaIdConsulta");
+
                     b.Navigation("Clinica");
+                });
+
+            modelBuilder.Entity("DDD.Domain.ClinicaContext.Consulta", b =>
+                {
+                    b.Navigation("Veterinarios");
                 });
 
             modelBuilder.Entity("DDD.Domain.SecretariaContext.Clinica", b =>
                 {
                     b.Navigation("Veterinarios");
+                });
+
+            modelBuilder.Entity("DDD.Domain.ClienteContext.Cliente", b =>
+                {
+                    b.Navigation("Animais");
                 });
 #pragma warning restore 612, 618
         }
