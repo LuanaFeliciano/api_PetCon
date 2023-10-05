@@ -1,6 +1,22 @@
 {
   "format": 1,
   "restore": {
+<<<<<<< HEAD
+    "C:\\Users\\windows\\Downloads\\api_PetCon-KEVIN\\DDD.Infra.SqlServer\\DDD.Infra.SqlServer.csproj": {}
+  },
+  "projects": {
+    "C:\\Users\\windows\\Downloads\\api_PetCon-KEVIN\\DDD.Domain\\DDD.Domain.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\windows\\Downloads\\api_PetCon-KEVIN\\DDD.Domain\\DDD.Domain.csproj",
+        "projectName": "DDD.Domain",
+        "projectPath": "C:\\Users\\windows\\Downloads\\api_PetCon-KEVIN\\DDD.Domain\\DDD.Domain.csproj",
+        "packagesPath": "C:\\Users\\windows\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\windows\\Downloads\\api_PetCon-KEVIN\\DDD.Domain\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\windows\\AppData\\Roaming\\NuGet\\NuGet.Config",
+=======
     "C:\\Users\\luana\\source\\repos\\PetCon\\PlataformaPetConDDD\\DDD.Infra.SqlServer\\DDD.Infra.SqlServer.csproj": {}
   },
   "projects": {
@@ -15,6 +31,7 @@
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\luana\\AppData\\Roaming\\NuGet\\NuGet.Config",
+>>>>>>> db196dce23e6feb5694d58b56dd256d78ec4e172
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -55,6 +72,23 @@
               "privateAssets": "all"
             }
           },
+<<<<<<< HEAD
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.401\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\windows\\Downloads\\api_PetCon-KEVIN\\DDD.Infra.SqlServer\\DDD.Infra.SqlServer.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\windows\\Downloads\\api_PetCon-KEVIN\\DDD.Infra.SqlServer\\DDD.Infra.SqlServer.csproj",
+        "projectName": "DDD.Infra.SqlServer",
+        "projectPath": "C:\\Users\\windows\\Downloads\\api_PetCon-KEVIN\\DDD.Infra.SqlServer\\DDD.Infra.SqlServer.csproj",
+        "packagesPath": "C:\\Users\\windows\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\windows\\Downloads\\api_PetCon-KEVIN\\DDD.Infra.SqlServer\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\windows\\AppData\\Roaming\\NuGet\\NuGet.Config",
+=======
           "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.102\\RuntimeIdentifierGraph.json"
         }
       }
@@ -70,6 +104,7 @@
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\luana\\AppData\\Roaming\\NuGet\\NuGet.Config",
+>>>>>>> db196dce23e6feb5694d58b56dd256d78ec4e172
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -83,8 +118,13 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
+<<<<<<< HEAD
+              "C:\\Users\\windows\\Downloads\\api_PetCon-KEVIN\\DDD.Domain\\DDD.Domain.csproj": {
+                "projectPath": "C:\\Users\\windows\\Downloads\\api_PetCon-KEVIN\\DDD.Domain\\DDD.Domain.csproj"
+=======
               "C:\\Users\\luana\\source\\repos\\PetCon\\PlataformaPetConDDD\\DDD.Domain\\DDD.Domain.csproj": {
                 "projectPath": "C:\\Users\\luana\\source\\repos\\PetCon\\PlataformaPetConDDD\\DDD.Domain\\DDD.Domain.csproj"
+>>>>>>> db196dce23e6feb5694d58b56dd256d78ec4e172
               }
             }
           }
@@ -126,7 +166,11 @@
               "privateAssets": "all"
             }
           },
+<<<<<<< HEAD
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.401\\RuntimeIdentifierGraph.json"
+=======
           "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.102\\RuntimeIdentifierGraph.json"
+>>>>>>> db196dce23e6feb5694d58b56dd256d78ec4e172
         }
       }
     }
