@@ -24,7 +24,6 @@ namespace DDD.Infra.SqlServer.Migrations
 
             modelBuilder.HasSequence("UserSequence");
 
-<<<<<<< HEAD
             modelBuilder.Entity("DDD.Domain.ClienteContext.Animal", b =>
                 {
                     b.Property<int>("AnimalId")
@@ -65,8 +64,6 @@ namespace DDD.Infra.SqlServer.Migrations
                     b.ToTable("Animais");
                 });
 
-=======
->>>>>>> db196dce23e6feb5694d58b56dd256d78ec4e172
             modelBuilder.Entity("DDD.Domain.ClinicaContext.Consulta", b =>
                 {
                     b.Property<int>("IdConsulta")
@@ -75,12 +72,21 @@ namespace DDD.Infra.SqlServer.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdConsulta"));
 
-                    b.Property<int>("IdVeterinarioUserId")
+                    b.Property<DateTime>("DataConsulta")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("IdVeterinario")
                         .HasColumnType("int");
 
-                    b.HasKey("IdConsulta");
+                    b.Property<string>("Observacoes")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
-                    b.HasIndex("IdVeterinarioUserId");
+                    b.Property<string>("Status")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("IdConsulta");
 
                     b.ToTable("Consultas");
                 });
@@ -181,25 +187,11 @@ namespace DDD.Infra.SqlServer.Migrations
                     b.ToTable("Veterinarios");
                 });
 
-<<<<<<< HEAD
             modelBuilder.Entity("DDD.Domain.ClienteContext.Animal", b =>
                 {
                     b.HasOne("DDD.Domain.ClienteContext.Cliente", null)
                         .WithMany("Animais")
                         .HasForeignKey("ClienteUserId");
-                });
-
-=======
->>>>>>> db196dce23e6feb5694d58b56dd256d78ec4e172
-            modelBuilder.Entity("DDD.Domain.ClinicaContext.Consulta", b =>
-                {
-                    b.HasOne("DDD.Domain.SecretariaContext.Veterinario", "IdVeterinario")
-                        .WithMany()
-                        .HasForeignKey("IdVeterinarioUserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("IdVeterinario");
                 });
 
             modelBuilder.Entity("DDD.Domain.SecretariaContext.Veterinario", b =>

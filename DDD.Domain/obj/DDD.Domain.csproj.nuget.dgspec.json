@@ -1,22 +1,6 @@
 {
   "format": 1,
   "restore": {
-<<<<<<< HEAD
-    "C:\\Users\\windows\\Downloads\\api_PetCon-KEVIN\\DDD.Domain\\DDD.Domain.csproj": {}
-  },
-  "projects": {
-    "C:\\Users\\windows\\Downloads\\api_PetCon-KEVIN\\DDD.Domain\\DDD.Domain.csproj": {
-      "version": "1.0.0",
-      "restore": {
-        "projectUniqueName": "C:\\Users\\windows\\Downloads\\api_PetCon-KEVIN\\DDD.Domain\\DDD.Domain.csproj",
-        "projectName": "DDD.Domain",
-        "projectPath": "C:\\Users\\windows\\Downloads\\api_PetCon-KEVIN\\DDD.Domain\\DDD.Domain.csproj",
-        "packagesPath": "C:\\Users\\windows\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\windows\\Downloads\\api_PetCon-KEVIN\\DDD.Domain\\obj\\",
-        "projectStyle": "PackageReference",
-        "configFilePaths": [
-          "C:\\Users\\windows\\AppData\\Roaming\\NuGet\\NuGet.Config",
-=======
     "C:\\Users\\luana\\source\\repos\\PetCon\\PlataformaPetConDDD\\DDD.Domain\\DDD.Domain.csproj": {}
   },
   "projects": {
@@ -31,7 +15,6 @@
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\luana\\AppData\\Roaming\\NuGet\\NuGet.Config",
->>>>>>> db196dce23e6feb5694d58b56dd256d78ec4e172
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -72,11 +55,7 @@
               "privateAssets": "all"
             }
           },
-<<<<<<< HEAD
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.401\\RuntimeIdentifierGraph.json"
-=======
           "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.102\\RuntimeIdentifierGraph.json"
->>>>>>> db196dce23e6feb5694d58b56dd256d78ec4e172
         }
       }
     }

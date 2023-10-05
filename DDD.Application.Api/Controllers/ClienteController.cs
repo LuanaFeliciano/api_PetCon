@@ -50,7 +50,7 @@ namespace DDD.Application.Api.Controllers
                     return NotFound();
 
                 _clienteRepository.UpdateCliente(cliente);
-                return Ok("Veterinario Atualizado com sucesso!");
+                return Ok("Cliente Atualizado com sucesso!");
             }
             catch (Exception)
             {
@@ -82,7 +82,7 @@ namespace DDD.Application.Api.Controllers
         public IActionResult AssociarAnimal(int id, Animal animal)
         {
             _clienteRepository.AdicionarAnimal(id, animal);
-            return Ok("Veterinario Cadastrado com sucesso!");
+            return Ok("Cliente Cadastrado com sucesso!");
         }
 
         [HttpDelete("api/Clinica/RetirarAnimal")]
@@ -91,7 +91,7 @@ namespace DDD.Application.Api.Controllers
             try
             {
                 _clienteRepository.RemoverAnimal(id, AnimalId);
-                return Ok("Veterinário removido com sucesso da clínica.");
+                return Ok("Cliente removido com sucesso da clínica.");
             }
             catch (Exception ex)
             {

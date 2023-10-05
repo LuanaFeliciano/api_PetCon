@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace DDD.Infra.SqlServer.Migrations
 {
     /// <inheritdoc />
-    public partial class CriacaoInicial : Migration
+    public partial class petcon : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -50,6 +50,22 @@ namespace DDD.Infra.SqlServer.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Consultas",
+                columns: table => new
+                {
+                    IdConsulta = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    DataConsulta = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Observacoes = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Status = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    IdVeterinario = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Consultas", x => x.IdConsulta);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Animais",
                 columns: table => new
                 {
@@ -71,19 +87,6 @@ namespace DDD.Infra.SqlServer.Migrations
                         column: x => x.ClienteUserId,
                         principalTable: "Clientes",
                         principalColumn: "UserId");
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Consultas",
-                columns: table => new
-                {
-                    IdConsulta = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    IdVeterinarioUserId = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Consultas", x => x.IdConsulta);
                 });
 
             migrationBuilder.CreateTable(
@@ -121,11 +124,6 @@ namespace DDD.Infra.SqlServer.Migrations
                 column: "ClienteUserId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Consultas_IdVeterinarioUserId",
-                table: "Consultas",
-                column: "IdVeterinarioUserId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Veterinarios_ClinicaId",
                 table: "Veterinarios",
                 column: "ClinicaId");
@@ -134,31 +132,19 @@ namespace DDD.Infra.SqlServer.Migrations
                 name: "IX_Veterinarios_ConsultaIdConsulta",
                 table: "Veterinarios",
                 column: "ConsultaIdConsulta");
-
-            migrationBuilder.AddForeignKey(
-                name: "FK_Consultas_Veterinarios_IdVeterinarioUserId",
-                table: "Consultas",
-                column: "IdVeterinarioUserId",
-                principalTable: "Veterinarios",
-                principalColumn: "UserId",
-                onDelete: ReferentialAction.Cascade);
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropForeignKey(
-                name: "FK_Consultas_Veterinarios_IdVeterinarioUserId",
-                table: "Consultas");
-
             migrationBuilder.DropTable(
                 name: "Animais");
 
             migrationBuilder.DropTable(
-                name: "Clientes");
+                name: "Veterinarios");
 
             migrationBuilder.DropTable(
-                name: "Veterinarios");
+                name: "Clientes");
 
             migrationBuilder.DropTable(
                 name: "Clinicas");
