@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace DDD.Domain.ClienteContext
@@ -13,6 +14,8 @@ namespace DDD.Domain.ClienteContext
         public int Telefone { get; set; }
         public bool Ativo { get; set; }
 
-        public List<Animal> Animais { get; set; }
+
+        [JsonIgnore]
+        public List<Animal>? Animais { get; set; }
     }
 }
