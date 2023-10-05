@@ -3713,17 +3713,23 @@
   },
   "projectFileDependencyGroups": {
     "net6.0": [
+      "DDD.Domain >= 1.0.0",
       "DDD.Infra.SqlServer >= 1.0.0",
       "Microsoft.EntityFrameworkCore.Design >= 7.0.10",
       "Swashbuckle.AspNetCore >= 6.2.3"
     ]
   },
   "packageFolders": {
+<<<<<<< HEAD
     "C:\\Users\\windows\\.nuget\\packages\\": {}
+=======
+    "C:\\Users\\luana\\.nuget\\packages\\": {}
+>>>>>>> db196dce23e6feb5694d58b56dd256d78ec4e172
   },
   "project": {
     "version": "1.0.0",
     "restore": {
+<<<<<<< HEAD
       "projectUniqueName": "C:\\Users\\windows\\Downloads\\api_PetCon-KEVIN\\DDD.Application.Api\\DDD.Application.Api.csproj",
       "projectName": "DDD.Application.Api",
       "projectPath": "C:\\Users\\windows\\Downloads\\api_PetCon-KEVIN\\DDD.Application.Api\\DDD.Application.Api.csproj",
@@ -3732,6 +3738,16 @@
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\windows\\AppData\\Roaming\\NuGet\\NuGet.Config",
+=======
+      "projectUniqueName": "C:\\Users\\luana\\source\\repos\\PetCon\\PlataformaPetConDDD\\DDD.Application.Api\\DDD.Application.Api.csproj",
+      "projectName": "DDD.Application.Api",
+      "projectPath": "C:\\Users\\luana\\source\\repos\\PetCon\\PlataformaPetConDDD\\DDD.Application.Api\\DDD.Application.Api.csproj",
+      "packagesPath": "C:\\Users\\luana\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\luana\\source\\repos\\PetCon\\PlataformaPetConDDD\\DDD.Application.Api\\obj\\",
+      "projectStyle": "PackageReference",
+      "configFilePaths": [
+        "C:\\Users\\luana\\AppData\\Roaming\\NuGet\\NuGet.Config",
+>>>>>>> db196dce23e6feb5694d58b56dd256d78ec4e172
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -3745,8 +3761,16 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
+<<<<<<< HEAD
             "C:\\Users\\windows\\Downloads\\api_PetCon-KEVIN\\DDD.Infra.SqlServer\\DDD.Infra.SqlServer.csproj": {
               "projectPath": "C:\\Users\\windows\\Downloads\\api_PetCon-KEVIN\\DDD.Infra.SqlServer\\DDD.Infra.SqlServer.csproj"
+=======
+            "C:\\Users\\luana\\source\\repos\\PetCon\\PlataformaPetConDDD\\DDD.Domain\\DDD.Domain.csproj": {
+              "projectPath": "C:\\Users\\luana\\source\\repos\\PetCon\\PlataformaPetConDDD\\DDD.Domain\\DDD.Domain.csproj"
+            },
+            "C:\\Users\\luana\\source\\repos\\PetCon\\PlataformaPetConDDD\\DDD.Infra.SqlServer\\DDD.Infra.SqlServer.csproj": {
+              "projectPath": "C:\\Users\\luana\\source\\repos\\PetCon\\PlataformaPetConDDD\\DDD.Infra.SqlServer\\DDD.Infra.SqlServer.csproj"
+>>>>>>> db196dce23e6feb5694d58b56dd256d78ec4e172
             }
           }
         }
@@ -3791,7 +3815,11 @@
             "privateAssets": "all"
           }
         },
+<<<<<<< HEAD
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.401\\RuntimeIdentifierGraph.json"
+=======
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.102\\RuntimeIdentifierGraph.json"
+>>>>>>> db196dce23e6feb5694d58b56dd256d78ec4e172
       }
     }
   }

@@ -86,5 +86,22 @@ namespace DDD.Infra.SqlServer.Repositories
                 }
             }
         }
+
+        public Clinica Login(string email, string senha)
+        {
+            var clinica = _context.Clinicas.FirstOrDefault(c => c.Email == email);
+
+            if (clinica == null)
+            {
+                return null;
+            }
+
+            if (clinica.SenhaAcesso != senha)
+            {
+                return null;
+            }
+
+            return clinica;
+        }
     }
 }

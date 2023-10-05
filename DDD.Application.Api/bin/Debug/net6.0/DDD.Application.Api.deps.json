@@ -8,6 +8,7 @@
     ".NETCoreApp,Version=v6.0": {
       "DDD.Application.Api/1.0.0": {
         "dependencies": {
+          "DDD.Domain": "1.0.0",
           "DDD.Infra.SqlServer": "1.0.0",
           "Microsoft.EntityFrameworkCore.Design": "7.0.10",
           "Swashbuckle.AspNetCore": "6.2.3"

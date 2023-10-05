@@ -24,6 +24,7 @@ namespace DDD.Infra.SqlServer.Migrations
 
             modelBuilder.HasSequence("UserSequence");
 
+<<<<<<< HEAD
             modelBuilder.Entity("DDD.Domain.ClienteContext.Animal", b =>
                 {
                     b.Property<int>("AnimalId")
@@ -64,6 +65,8 @@ namespace DDD.Infra.SqlServer.Migrations
                     b.ToTable("Animais");
                 });
 
+=======
+>>>>>>> db196dce23e6feb5694d58b56dd256d78ec4e172
             modelBuilder.Entity("DDD.Domain.ClinicaContext.Consulta", b =>
                 {
                     b.Property<int>("IdConsulta")
@@ -178,6 +181,7 @@ namespace DDD.Infra.SqlServer.Migrations
                     b.ToTable("Veterinarios");
                 });
 
+<<<<<<< HEAD
             modelBuilder.Entity("DDD.Domain.ClienteContext.Animal", b =>
                 {
                     b.HasOne("DDD.Domain.ClienteContext.Cliente", null)
@@ -185,6 +189,8 @@ namespace DDD.Infra.SqlServer.Migrations
                         .HasForeignKey("ClienteUserId");
                 });
 
+=======
+>>>>>>> db196dce23e6feb5694d58b56dd256d78ec4e172
             modelBuilder.Entity("DDD.Domain.ClinicaContext.Consulta", b =>
                 {
                     b.HasOne("DDD.Domain.SecretariaContext.Veterinario", "IdVeterinario")
