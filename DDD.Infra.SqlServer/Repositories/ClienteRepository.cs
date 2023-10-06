@@ -42,20 +42,6 @@ namespace DDD.Infra.SqlServer.Repositories
             return clientes;
         }
 
-        //public void InsertCliente(Cliente cliente)
-        //{
-        //    try
-        //    {
-
-        //        _context.Clientes.Add(cliente);
-        //        _context.SaveChanges();
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        //log exception
-        //    }
-        //}
-
         public void InsertCliente(int clinicaId, Cliente cliente)
         {
             var clinica = _context.Clinicas.Include(c => c.Clientes).FirstOrDefault(c => c.ClinicaId == clinicaId);
