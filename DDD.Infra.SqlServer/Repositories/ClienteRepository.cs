@@ -1,12 +1,10 @@
 ﻿using DDD.Domain.ClienteContext;
 using DDD.Domain.SecretariaContext;
-using DDD.Domain.UserManagementContext;
 using DDD.Infra.SqlServer.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -21,16 +19,15 @@ namespace DDD.Infra.SqlServer.Repositories
             _context = context;
         }
 
-        public Cliente GetClienteById(int UserId)
+        public Cliente GetClienteById(int id)
         {
-            return _context.Clientes.Find(UserId);
-            
+            return _context.Clientes.Find(id);
         }
 
         public List<Cliente> GetCliente()
         {
 
-            var list = _context.Clientes.Where(c => c.Ativo == true).ToList();
+            var list = _context.Clientes.ToList().Where(c => c.Ativo).ToList();
             return list;
 
         }
