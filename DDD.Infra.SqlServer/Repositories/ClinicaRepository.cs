@@ -1,3 +1,4 @@
+using DDD.Domain.ClienteContext;
 using DDD.Domain.SecretariaContext;
 using DDD.Infra.SqlServer.Interfaces;
 using Microsoft.EntityFrameworkCore;
@@ -84,6 +85,23 @@ namespace DDD.Infra.SqlServer.Repositories
                     _context.SaveChanges();
                 }
             }
+        }
+
+        public Clinica Login(string email, string senha)
+        {
+            var clinica = _context.Clinicas.FirstOrDefault(c => c.Email == email);
+
+            if (clinica == null)
+            {
+                return null;
+            }
+
+            if (clinica.SenhaAcesso != senha)
+            {
+                return null;
+            }
+
+            return clinica;
         }
     }
 }

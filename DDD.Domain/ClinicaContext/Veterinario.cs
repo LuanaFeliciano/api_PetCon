@@ -1,4 +1,5 @@
-﻿using DDD.Domain.UserManagementContext;
+﻿using DDD.Domain.ClienteContext;
+using DDD.Domain.UserManagementContext;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,6 +14,10 @@ namespace DDD.Domain.SecretariaContext
         public int ClinicaId { get; set; } // Propriedade que representa a associação à clínica
 
         [JsonIgnore]
+        public List<Animal>? Animais { get; set; }   
+
+        [JsonIgnore]
         public Clinica? Clinica { get; set; } // Propriedade de navegação para a clínica associada
+
     }
 }

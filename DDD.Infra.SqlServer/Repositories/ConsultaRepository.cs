@@ -27,6 +27,33 @@ namespace DDD.Infra.SqlServer.Repositories
         {
             return _context.Consultas.Find(id);
         }
+        public Consulta InsertConsulta(int idVeterinario, int idAnimal)
+        {
+            var veterinaria = _context.Veterinarios.First(i => i.UserId == idVeterinario);
+            var animal = _context.Animais.First(i => i.AnimalId == idAnimal);
+
+            var Consulta = new Consulta
+            {
+                Veterinarios = veterinaria,
+                Animal = animal,
+                DataConsulta = DateTime.Now
+            };
+
+            try
+            {
+
+                _context.Add(Consulta);
+                _context.SaveChanges();
+
+            }
+            catch (Exception ex)
+            {
+                var msg = ex.InnerException;
+                throw;
+            }
+
+            return Consulta;
+        }
     }
 
 }
