@@ -20,12 +20,6 @@ namespace DDD.Infra.SqlServer
                 .WithOne(veterinario => veterinario.Clinica) // Um veterinário pertence a uma única clínica
                 .HasForeignKey(veterinario => veterinario.ClinicaId); // Chave estrangeira em Veterinario
 
-<<<<<<< HEAD
-            modelBuilder.Entity<Veterinario>()
-                .HasMany(e => e.Animais)
-                .WithMany(e => e.Veterinarios)
-                .UsingEntity<Consulta>();
-=======
 
             // Configuração do relacionamento entre Clinica e Cliente
             modelBuilder.Entity<Clinica>()
@@ -38,7 +32,6 @@ namespace DDD.Infra.SqlServer
                 .HasMany(cliente => cliente.Animais) // Um cliente tem muitos animais
                 .WithOne(animal => animal.Clientes) // Um animal pertence a uma único cliente
                 .HasForeignKey(animal => animal.ClienteId); // Chave estrangeira em animal
->>>>>>> 120f2ce0865a7a98f48afdcfd895c7d311b3c29d
 
             modelBuilder.Entity<User>().UseTpcMappingStrategy();
 
