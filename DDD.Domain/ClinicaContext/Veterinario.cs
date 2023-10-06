@@ -1,4 +1,5 @@
 ﻿using DDD.Domain.ClienteContext;
+using DDD.Domain.ClinicaContext;
 using DDD.Domain.UserManagementContext;
 using System;
 using System.Collections.Generic;
@@ -18,6 +19,10 @@ namespace DDD.Domain.SecretariaContext
 
         [JsonIgnore]
         public Clinica? Clinica { get; set; } // Propriedade de navegação para a clínica associada
+
+
+        [JsonIgnore]
+        public List<Consulta>? Consultas { get; set; }
 
     }
 }

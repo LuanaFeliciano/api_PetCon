@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DDD.Infra.SqlServer.Migrations
 {
     [DbContext(typeof(SqlServerContext))]
-    [Migration("20231006015614_petCon2")]
-    partial class petCon2
+    [Migration("20231006031739_petcon")]
+    partial class petcon
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -38,7 +38,7 @@ namespace DDD.Infra.SqlServer.Migrations
                     b.Property<bool>("Ativo")
                         .HasColumnType("bit");
 
-                    b.Property<int?>("ClienteUserId")
+                    b.Property<int>("ClienteId")
                         .HasColumnType("int");
 
                     b.Property<int>("Idade")
@@ -62,7 +62,7 @@ namespace DDD.Infra.SqlServer.Migrations
 
                     b.HasKey("AnimalId");
 
-                    b.HasIndex("ClienteUserId");
+                    b.HasIndex("ClienteId");
 
                     b.ToTable("Animais");
                 });
@@ -165,12 +165,17 @@ namespace DDD.Infra.SqlServer.Migrations
                 {
                     b.HasBaseType("DDD.Domain.UserManagementContext.User");
 
+                    b.Property<int>("ClinicaId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Senha")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Telefone")
                         .HasColumnType("int");
+
+                    b.HasIndex("ClinicaId");
 
                     b.ToTable("Clientes");
                 });
@@ -189,17 +194,21 @@ namespace DDD.Infra.SqlServer.Migrations
 
             modelBuilder.Entity("DDD.Domain.ClienteContext.Animal", b =>
                 {
-                    b.HasOne("DDD.Domain.ClienteContext.Cliente", null)
+                    b.HasOne("DDD.Domain.ClienteContext.Cliente", "Clientes")
                         .WithMany("Animais")
-                        .HasForeignKey("ClienteUserId");
+                        .HasForeignKey("ClienteId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Clientes");
                 });
 
             modelBuilder.Entity("DDD.Domain.ClinicaContext.Consulta", b =>
                 {
                     b.HasOne("DDD.Domain.SecretariaContext.Veterinario", "Veterinarios")
-                        .WithMany()
+                        .WithMany("Consultas")
                         .HasForeignKey("VeterinariosUserId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.ClientNoAction)
                         .IsRequired();
 
                     b.HasOne("DDD.Domain.ClienteContext.Animal", "Animal")
@@ -211,6 +220,17 @@ namespace DDD.Infra.SqlServer.Migrations
                     b.Navigation("Animal");
 
                     b.Navigation("Veterinarios");
+                });
+
+            modelBuilder.Entity("DDD.Domain.ClienteContext.Cliente", b =>
+                {
+                    b.HasOne("DDD.Domain.SecretariaContext.Clinica", "Clinica")
+                        .WithMany("Clientes")
+                        .HasForeignKey("ClinicaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Clinica");
                 });
 
             modelBuilder.Entity("DDD.Domain.SecretariaContext.Veterinario", b =>
@@ -226,12 +246,19 @@ namespace DDD.Infra.SqlServer.Migrations
 
             modelBuilder.Entity("DDD.Domain.SecretariaContext.Clinica", b =>
                 {
+                    b.Navigation("Clientes");
+
                     b.Navigation("Veterinarios");
                 });
 
             modelBuilder.Entity("DDD.Domain.ClienteContext.Cliente", b =>
                 {
                     b.Navigation("Animais");
+                });
+
+            modelBuilder.Entity("DDD.Domain.SecretariaContext.Veterinario", b =>
+                {
+                    b.Navigation("Consultas");
                 });
 #pragma warning restore 612, 618
         }

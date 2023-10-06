@@ -15,9 +15,9 @@ namespace DDD.Domain.ClinicaContext
         public DateTime DataConsulta { get; set; } 
         
         public int idVeterinario { get; set; }
-        public Veterinario Veterinarios { get; set; }
+        public Veterinario? Veterinarios { get; set; }
 
         public int animalId { get; set; }
-        public Animal Animal { get; set; }
+        public Animal? Animal { get; set; }
     }
 }
