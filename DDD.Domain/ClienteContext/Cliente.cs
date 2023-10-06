@@ -13,11 +13,7 @@ namespace DDD.Domain.ClienteContext
     {
         public string Senha { get; set; }
         public int Telefone { get; set; }
-<<<<<<< HEAD
-        
-=======
 
->>>>>>> 120f2ce0865a7a98f48afdcfd895c7d311b3c29d
 
         [JsonIgnore]
         public List<Animal>? Animais { get; set; }
