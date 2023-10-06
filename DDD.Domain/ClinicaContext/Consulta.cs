@@ -1,4 +1,5 @@
-﻿using DDD.Domain.SecretariaContext;
+﻿using DDD.Domain.ClienteContext;
+using DDD.Domain.SecretariaContext;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,15 +13,11 @@ namespace DDD.Domain.ClinicaContext
     {
         public int IdConsulta { get; set; }
         public DateTime DataConsulta { get; set; } 
-        public string Observacoes { get; set; }
-        public string Status { get; set; }
-        public int IdVeterinario { get; set; }
-        public List<Veterinario> Veterinarios { get; set; }
+        
+        public int idVeterinario { get; set; }
+        public Veterinario Veterinarios { get; set; }
 
-        //public int IdCliente { get; set; }
-        //public Cliente Cliente { get; set; }
-
-        //public int IdAnimal { get; set; }
-        //public Animal Animal { get; set; }
+        public int animalId { get; set; }
+        public Animal Animal { get; set; }
     }
 }
