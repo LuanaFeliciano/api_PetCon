@@ -56,7 +56,7 @@ namespace DDD.Application.Api.Controllers
             return Ok("Cliente Cadastrado com sucesso!");
         }
 
-        [HttpPut]
+        [HttpPut("{id}")]
         public ActionResult Put([FromBody] Cliente cliente)
         {
             try
