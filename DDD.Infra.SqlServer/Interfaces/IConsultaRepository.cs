@@ -1,6 +1,4 @@
-﻿using DDD.Domain.ClienteContext;
-using DDD.Domain.ClinicaContext;
-using DDD.Domain.SecretariaContext;
+﻿using DDD.Domain.ClinicaContext;
 using System;
 using System.Collections.Generic;
 using System.Linq;

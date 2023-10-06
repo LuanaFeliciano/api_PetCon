@@ -15,7 +15,7 @@ namespace DDD.Domain.SecretariaContext
         public int ClinicaId { get; set; } // Propriedade que representa a associação à clínica
 
         [JsonIgnore]
-        public List<Animal>? Animais { get; set; }   
+        public List<Animal>? Animais { get; set; }
 
         [JsonIgnore]
         public Clinica? Clinica { get; set; } // Propriedade de navegação para a clínica associada
