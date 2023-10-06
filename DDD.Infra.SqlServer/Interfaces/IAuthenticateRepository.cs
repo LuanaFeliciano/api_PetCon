@@ -1,3 +1,4 @@
+using DDD.Domain.ClienteContext;
 using DDD.Domain.SecretariaContext;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -12,7 +13,7 @@ namespace DDD.Infra.SqlServer.Interfaces
     {
         public Clinica Authenticate(string email, string senha);
 
-        //public Cliente Authenticate(string email, string senha);
+        public Cliente AuthenticateCliente(string email, string senha);
 
     }
 }

@@ -12,11 +12,13 @@ namespace DDD.Application.Api.Controllers
     public class ClienteController : ControllerBase
     {
         readonly IClienteRepository _clienteRepository;
+        readonly IAuthenticateRepository _authenticationRepository;
 
         //Dependency Injection
-        public ClienteController(IClienteRepository clienteRepository)
+        public ClienteController(IClienteRepository clienteRepository, IAuthenticateRepository authenticateRepository)
         {
             _clienteRepository = clienteRepository;
+            _authenticationRepository = authenticateRepository;
         }
 
 
@@ -32,13 +34,26 @@ namespace DDD.Application.Api.Controllers
             return Ok(_clienteRepository.GetClienteById(id));
         }
 
-        [HttpPost("api/Cliente/Create")] // Método para criar um cliente
-        [ProducesResponseType(StatusCodes.Status201Created)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public ActionResult<Cliente> CreateCliente(Cliente cliente)
+        [HttpGet("{clinicaId}/clientes")]
+        public ActionResult ClientesDaClinica(int clinicaId)
         {
-            _clienteRepository.InsertCliente(cliente);
-            return CreatedAtAction(nameof(GetById), new { id = cliente.UserId }, cliente);
+            var clientes = _clienteRepository.GetClientesByClinicaId(clinicaId);
+
+            if (clientes.Any())
+            {
+                return Ok(clientes);
+            }
+            else
+            {
+                return NotFound("Sua clínica não possui clientes ainda. Cadastre-os.");
+            }
+        }
+
+       [HttpPost("api/Clinica/CadastrarCliente")]
+        public IActionResult InsertCliente(int clinicaId, Cliente cliente)
+        {
+            _clienteRepository.InsertCliente(clinicaId, cliente);
+            return Ok("Cliente Cadastrado com sucesso!");
         }
 
         [HttpPut("{id}")]
@@ -82,7 +97,7 @@ namespace DDD.Application.Api.Controllers
         public IActionResult AssociarAnimal(int id, Animal animal)
         {
             _clienteRepository.AdicionarAnimal(id, animal);
-            return Ok("Cliente Cadastrado com sucesso!");
+            return Ok("Animal Cadastrado com sucesso!");
         }
 
         [HttpDelete("api/Clinica/RetirarAnimal")]
@@ -91,12 +106,33 @@ namespace DDD.Application.Api.Controllers
             try
             {
                 _clienteRepository.RemoverAnimal(id, AnimalId);
-                return Ok("Cliente removido com sucesso da clínica.");
+                return Ok("animal removido com sucesso do cliente.");
             }
             catch (Exception ex)
             {
                 throw ex;
             }
+        }
+
+
+        [HttpPost("api/Clinica/Login")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+        public ActionResult Login(string email, string senha)
+        {
+            if (string.IsNullOrEmpty(email) || string.IsNullOrEmpty(senha))
+            {
+                return BadRequest("Email e senha são obrigatórios.");
+            }
+
+            var clinica = _authenticationRepository.AuthenticateCliente(email, senha);
+
+            if (clinica == null)
+            {
+                return Unauthorized("Email ou senha incorretos.");
+            }
+
+            return Ok("Login bem-sucedido");
         }
 
     }

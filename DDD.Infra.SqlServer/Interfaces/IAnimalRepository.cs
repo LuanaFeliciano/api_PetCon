@@ -15,5 +15,7 @@ namespace DDD.Infra.SqlServer.Interfaces
         public void InsertAnimal(Animal animal);
         public void UpdateAnimal(Animal animal);
         public void DeleteAnimal(int id);
+
+        List<Animal> GetAnimaisByClienteId(int clienteId);
     }
 }

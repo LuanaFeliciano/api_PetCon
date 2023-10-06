@@ -1,3 +1,4 @@
+using DDD.Domain.ClienteContext;
 using DDD.Domain.UserManagementContext;
 using System;
 using System.Collections.Generic;
@@ -29,6 +30,9 @@ namespace DDD.Domain.SecretariaContext
         [JsonIgnore]
         // Propriedade de navegação para veterinários associados à clínica
         public List<Veterinario>? Veterinarios { get; set; }
+
+        [JsonIgnore]
+        public List<Cliente>? Clientes { get; set; }
 
         public Clinica()
         {

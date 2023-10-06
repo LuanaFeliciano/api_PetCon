@@ -1,6 +1,7 @@
 ﻿using DDD.Domain.ClienteContext;
 using DDD.Domain.SecretariaContext;
 using DDD.Infra.SqlServer.Interfaces;
+using DDD.Infra.SqlServer.Repositories;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -29,6 +30,22 @@ namespace DDD.Application.Api.Controllers
         public ActionResult<Animal> GetById(int id)
         {
             return Ok(_animalRepository.GetAnimalById(id));
+        }
+
+
+        [HttpGet("{userId}/animais")]
+        public ActionResult AnimaisDoCliente(int userId)
+        {
+            var animais = _animalRepository.GetAnimaisByClienteId(userId);
+
+            if (animais.Any())
+            {
+                return Ok(animais);
+            }
+            else
+            {
+                return NotFound("Esse cliente não possui animais ainda. Cadastre-os.");
+            }
         }
 
         [HttpPost]
