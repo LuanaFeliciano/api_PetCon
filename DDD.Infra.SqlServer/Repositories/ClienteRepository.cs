@@ -32,17 +32,37 @@ namespace DDD.Infra.SqlServer.Repositories
 
         }
 
-        public void InsertCliente(Cliente cliente)
+        public List<Cliente> GetClientesByClinicaId(int clinicaId)
         {
-            try
-            {
+            var clientes = _context.Clientes
+                .Include(v => v.Clinica)
+                .Where(v => v.ClinicaId == clinicaId)
+                .ToList();
 
-                _context.Clientes.Add(cliente);
-                _context.SaveChanges();
-            }
-            catch (Exception ex)
+            return clientes;
+        }
+
+        //public void InsertCliente(Cliente cliente)
+        //{
+        //    try
+        //    {
+
+        //        _context.Clientes.Add(cliente);
+        //        _context.SaveChanges();
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        //log exception
+        //    }
+        //}
+
+        public void InsertCliente(int clinicaId, Cliente cliente)
+        {
+            var clinica = _context.Clinicas.Include(c => c.Clientes).FirstOrDefault(c => c.ClinicaId == clinicaId);
+            if (clinica != null)
             {
-                //log exception
+                clinica.Clientes.Add(cliente);
+                _context.SaveChanges();
             }
         }
 
@@ -99,6 +119,23 @@ namespace DDD.Infra.SqlServer.Repositories
                     _context.SaveChanges();
                 }
             }
+        }
+
+        public Cliente Login(string email, string senha)
+        {
+            var cliente = _context.Clientes.FirstOrDefault(c => c.Email == email);
+
+            if (cliente == null)
+            {
+                return null;
+            }
+
+            if (cliente.Senha != senha)
+            {
+                return null;
+            }
+
+            return cliente;
         }
     }
 }

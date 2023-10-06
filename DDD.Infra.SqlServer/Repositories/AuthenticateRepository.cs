@@ -1,3 +1,4 @@
+using DDD.Domain.ClienteContext;
 using DDD.Domain.SecretariaContext;
 using DDD.Infra.SqlServer.Interfaces;
 using Microsoft.EntityFrameworkCore;
@@ -27,12 +28,12 @@ namespace DDD.Infra.SqlServer.Repositories
             return clinica;
         }
 
-        //public Cliente Authenticate(string email, string senha)
-        //{
-            // Verifique se há uma clínica com o email fornecido e a senha correspondente
-        //    var cliente = _context.Cliente.FirstOrDefault(c => c.Email == email && c.SenhaAcesso == senha);
+        public Cliente AuthenticateCliente(string email, string senha)
+        {
+            //Verifique se há uma clínica com o email fornecido e a senha correspondente
+           var cliente = _context.Clientes.FirstOrDefault(c => c.Email == email && c.Senha == senha);
 
-         //   return cliente;
-       // }
+            return cliente;
+        }
     }
 }

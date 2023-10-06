@@ -32,6 +32,16 @@ namespace DDD.Infra.SqlServer.Repositories
 
         }
 
+        public List<Animal> GetAnimaisByClienteId(int clienteId)
+        {
+            var animais = _context.Animais
+                .Include(v => v.Clientes)
+                .Where(v => v.ClienteId == clienteId)
+                .ToList();
+
+            return animais;
+        }
+
         public void InsertAnimal(Animal animal)
         {
             try
