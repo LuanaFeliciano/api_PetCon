@@ -12,5 +12,7 @@ namespace DDD.Infra.SqlServer.Interfaces
         public List<Consulta> GetConsultas();
         public Consulta GetConsultaById(int id);
 
+        public Consulta InsertConsulta(int idVeterinario, int animalId);
+
     }
 }

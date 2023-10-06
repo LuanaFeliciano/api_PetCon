@@ -14,7 +14,6 @@ namespace DDD.Domain.ClienteContext
         public string Senha { get; set; }
         public int Telefone { get; set; }
 
-
         [JsonIgnore]
         public List<Animal>? Animais { get; set; }
 
