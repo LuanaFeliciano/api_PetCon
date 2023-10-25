@@ -1,3 +1,4 @@
+using DDD.Domain.ClienteContext;
 using DDD.Domain.SecretariaContext;
 using DDD.Infra.SqlServer.Interfaces;
 using Microsoft.EntityFrameworkCore;
@@ -22,6 +23,16 @@ namespace DDD.Infra.SqlServer.Repositories
         public Veterinario GetVeterinarioById(int id)
         {
             return _context.Veterinarios.Find(id);
+        }
+
+        public Veterinario GetVeterinarioByCPF(string cpf)
+        {
+            string cpfString = cpf.ToString();
+
+            var veterinario = _context.Veterinarios
+                .FirstOrDefault(v => v.CPF == cpfString);
+
+            return veterinario;
         }
 
         public List<Veterinario> GetVeterinarios()

@@ -34,6 +34,12 @@ namespace DDD.Application.Api.Controllers
             return Ok(_clienteRepository.GetClienteById(id));
         }
 
+        [HttpGet("PesquisarPorCPF/{cpf}")]
+        public ActionResult<Cliente> GetByCPF(string cpf)
+        {
+            return Ok(_clienteRepository.GetClienteByCPF(cpf));
+        }
+
         [HttpGet("{clinicaId}/clientes")]
         public ActionResult ClientesDaClinica(int clinicaId)
         {
@@ -115,7 +121,7 @@ namespace DDD.Application.Api.Controllers
         }
 
 
-        [HttpPost("api/Clinica/Login")]
+        [HttpPost("api/Cliente/Login")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         public ActionResult Login(string email, string senha)

@@ -12,8 +12,11 @@ namespace DDD.Domain.ClinicaContext
     public class Consulta
     {
         public int IdConsulta { get; set; }
-        public DateTime DataConsulta { get; set; } 
-        
+        public string DataConsulta { get; set; }
+
+        public string Status { get; set; }
+
+        public string? Descricao { get; set; }
         public int idVeterinario { get; set; }
         public Veterinario Veterinarios { get; set; }
 

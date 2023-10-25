@@ -1,5 +1,6 @@
 ﻿using DDD.Domain.ClinicaContext;
 using DDD.Infra.SqlServer.Interfaces;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,15 +20,16 @@ namespace DDD.Infra.SqlServer.Repositories
 
         public List<Consulta> GetConsultas()
         {
-            var list = _context.Consultas.ToList();
+            var list = _context.Consultas.Include(c => c.Veterinarios).Include(c => c.Animal).ToList();
             return list;
         }
+
 
         public Consulta GetConsultaById(int id)
         {
             return _context.Consultas.Find(id);
         }
-        public Consulta InsertConsulta(int idVeterinario, int idAnimal)
+        public Consulta InsertConsulta(int idVeterinario, int idAnimal, string descricao, string dataConsulta)
         {
             var veterinaria = _context.Veterinarios.First(i => i.UserId == idVeterinario);
             var animal = _context.Animais.First(i => i.AnimalId == idAnimal);
@@ -36,7 +38,9 @@ namespace DDD.Infra.SqlServer.Repositories
             {
                 Veterinarios = veterinaria,
                 Animal = animal,
-                DataConsulta = DateTime.Now
+                Status = "Agendado",
+                Descricao = descricao,
+                DataConsulta = dataConsulta
             };
 
             try
