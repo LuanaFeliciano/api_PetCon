@@ -59,7 +59,7 @@ namespace DDD.Application.Api.Controllers
         public IActionResult InsertCliente(int clinicaId, Cliente cliente)
         {
             _clienteRepository.InsertCliente(clinicaId, cliente);
-            return Ok("Cliente Cadastrado com sucesso!");
+            return CreatedAtAction(nameof(GetById), new { id = cliente.UserId }, cliente);
         }
 
         [HttpPut]
@@ -131,14 +131,14 @@ namespace DDD.Application.Api.Controllers
                 return BadRequest("Email e senha são obrigatórios.");
             }
 
-            var clinica = _authenticationRepository.AuthenticateCliente(email, senha);
+            var cliente = _authenticationRepository.AuthenticateCliente(email, senha);
 
-            if (clinica == null)
+            if (cliente == null)
             {
                 return Unauthorized("Email ou senha incorretos.");
             }
 
-            return Ok("Login bem-sucedido");
+            return Ok(new { Message = "Login bem-sucedido", ClienteId = cliente.UserId, documento = cliente.CPF, clincia = cliente.ClinicaId });
         }
 
     }
