@@ -37,8 +37,11 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-app.UseAuthorization();
 
+app.UseCors(options => options.WithOrigins("http://localhost:9000").AllowAnyMethod().AllowAnyHeader());
+
+app.UseAuthorization();
+app.UseCors("AllowSpecificOrigin");
 app.MapControllers();
 
 app.Run();
