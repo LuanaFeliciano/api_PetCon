@@ -34,9 +34,9 @@ namespace DDD.Application.Api.Controllers
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public ActionResult<Consulta> CreateConsulta(int idVeterinario, int idAnimal)
+        public ActionResult<Consulta> CreateConsulta([FromBody] ConsultaCreateModel model)
         {
-            Consulta consultaIdSaved = _consultaRepository.InsertConsulta(idVeterinario, idAnimal);
+            Consulta consultaIdSaved = _consultaRepository.InsertConsulta(model.IdVeterinario, model.IdAnimal, model.Descricao, model.DataConsulta);
             return CreatedAtAction(nameof(GetById), new { id = consultaIdSaved.IdConsulta }, consultaIdSaved);
         }
     }

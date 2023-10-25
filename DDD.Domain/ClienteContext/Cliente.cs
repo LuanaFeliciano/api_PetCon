@@ -12,7 +12,7 @@ namespace DDD.Domain.ClienteContext
     public class Cliente : User
     {
         public string Senha { get; set; }
-        public int Telefone { get; set; }
+        public string Telefone { get; set; }
 
         [JsonIgnore]
         public List<Animal>? Animais { get; set; }

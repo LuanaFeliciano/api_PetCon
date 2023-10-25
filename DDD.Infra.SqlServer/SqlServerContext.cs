@@ -63,9 +63,6 @@ namespace DDD.Infra.SqlServer
 
             modelBuilder.Entity<Consulta>()
                 .HasKey(c => c.IdConsulta);
-
-
-
         }
 
         public DbSet<Clinica> Clinicas { get; set; }

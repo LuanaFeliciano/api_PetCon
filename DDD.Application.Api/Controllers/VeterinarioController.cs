@@ -32,6 +32,12 @@ namespace DDD.Application.Api.Controllers
             return Ok(_veterinarioRepository.GetVeterinarioById(id));
         }
 
+        [HttpGet("PesquisarPorCPF/{cpf}")]
+        public ActionResult<Veterinario> GetByCPF(string cpf)
+        {
+            return Ok(_veterinarioRepository.GetVeterinarioByCPF(cpf));
+        }
+
         [HttpGet("{clinicaId}/veterinarios")]
         public ActionResult VeterinariosDaClinica(int clinicaId)
         {

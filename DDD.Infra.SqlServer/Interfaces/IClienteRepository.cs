@@ -12,6 +12,7 @@ namespace DDD.Infra.SqlServer.Interfaces
     {
         public List<Cliente> GetCliente();
         public Cliente GetClienteById(int id);
+        public Cliente GetClienteByCPF(string cpf);
         public void UpdateCliente(Cliente cliente);
         public void DeleteCliente(int id);
         public void AdicionarAnimal(int clienteId, Animal animal);
