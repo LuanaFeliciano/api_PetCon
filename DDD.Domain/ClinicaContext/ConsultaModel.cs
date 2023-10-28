@@ -15,6 +15,8 @@ namespace DDD.Domain.ClinicaContext
         public int IdAnimal { get; set; }
         public string Descricao { get; set; }
         public string DataConsulta { get; set; }
+
+        public string Status { get; set; }
     }
 
 }

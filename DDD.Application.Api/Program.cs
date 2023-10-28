@@ -1,6 +1,7 @@
 using DDD.Infra.SqlServer;
 using DDD.Infra.SqlServer.Interfaces;
 using DDD.Infra.SqlServer.Repositories;
+using System.Text.Json;
 using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -18,6 +19,7 @@ builder.Services.AddScoped<IClienteRepository, ClienteRepository>();
 
 builder.Services.AddControllers().AddJsonOptions(x =>
    x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.Preserve);
+
 
 
 builder.Services.AddControllers();

@@ -24,7 +24,7 @@ namespace DDD.Domain.ClienteContext
 
         public int ClienteId { get; set; } // Propriedade que representa a associação ao cliente
 
-        [JsonIgnore]
+        
         public Cliente? Clientes { get; set; } // Propriedade de navegação para o cliente associado
 
     }

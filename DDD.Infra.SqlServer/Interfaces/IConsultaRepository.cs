@@ -9,9 +9,11 @@ namespace DDD.Infra.SqlServer.Interfaces
 {
     public interface IConsultaRepository
     {
-        public List<Consulta> GetConsultas();
+        public string GetConsultas();
         public Consulta GetConsultaById(int id);
         public Consulta InsertConsulta(int idVeterinario, int animalId, string descricao, string dataConsulta);
+        public void DeleteConsulta(int id);
 
+        public void UpdateConsulta(Consulta consulta);
     }
 }

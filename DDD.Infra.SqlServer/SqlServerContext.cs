@@ -14,6 +14,13 @@ namespace DDD.Infra.SqlServer
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+
+            
+            modelBuilder.Entity<Animal>()
+                .HasOne(a => a.Clientes)
+                .WithMany(c => c.Animais)
+                .HasForeignKey(a => a.ClienteId);
+
             // Configuração do relacionamento entre Clinica e Veterinario
             modelBuilder.Entity<Clinica>()
                 .HasMany(clinica => clinica.Veterinarios) // Uma clínica tem muitos veterinários
