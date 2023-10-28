@@ -5,7 +5,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
+using System.Text.Json;
 using System.Threading.Tasks;
+using DDD.Domain.SecretariaContext;
 
 namespace DDD.Infra.SqlServer.Repositories
 {
@@ -18,14 +21,31 @@ namespace DDD.Infra.SqlServer.Repositories
             _context = context;
         }
 
-        public List<Consulta> GetConsultas()
+        public string GetConsultas()
         {
-            var list = _context.Consultas.Include(c => c.Veterinarios).Include(c => c.Animal).ToList();
-            return list;
+
+
+            var consultas = _context.Consultas
+                .Include(c => c.Veterinarios)
+                    .ThenInclude(v => v.Clinica)
+                .Include(c => c.Animal)
+                    .ThenInclude(a => a.Clientes)
+                .ToList();
+
+            var options = new JsonSerializerOptions
+            {
+                ReferenceHandler = ReferenceHandler.IgnoreCycles,
+                // Outras configurações...
+            };
+
+            var jsonString = JsonSerializer.Serialize(consultas, options);
+
+            return jsonString;
         }
 
 
-        public Consulta GetConsultaById(int id)
+
+            public Consulta GetConsultaById(int id)
         {
             return _context.Consultas.Find(id);
         }
@@ -38,7 +58,7 @@ namespace DDD.Infra.SqlServer.Repositories
             {
                 Veterinarios = veterinaria,
                 Animal = animal,
-                Status = "Agendado",
+                Status = "Agendada",
                 Descricao = descricao,
                 DataConsulta = dataConsulta
             };
@@ -57,6 +77,37 @@ namespace DDD.Infra.SqlServer.Repositories
             }
 
             return Consulta;
+        }
+
+        public void DeleteConsulta(int id)
+        {
+            try
+            {
+                var excluir = _context.Consultas.Find(id);
+                excluir.Status = "Cancelada";
+                _context.SaveChanges();
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+
+        public void UpdateConsulta(Consulta consulta)
+        {
+            try
+            {
+                _context.Entry(consulta).State = EntityState.Modified;
+                _context.SaveChanges();
+
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
         }
     }
 

@@ -17,10 +17,10 @@ namespace DDD.Domain.ClinicaContext
         public string Status { get; set; }
 
         public string? Descricao { get; set; }
-        public int idVeterinario { get; set; }
-        public Veterinario Veterinarios { get; set; }
+        public int IdVeterinario { get; set; }
+        public Veterinario? Veterinarios { get; set; }
 
-        public int animalId { get; set; }
+        public int AnimalId { get; set; }
         public Animal? Animal { get; set; }
     }
 }

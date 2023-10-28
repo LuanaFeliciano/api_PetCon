@@ -72,12 +72,18 @@ namespace DDD.Infra.SqlServer.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdConsulta"));
 
+                    b.Property<int>("AnimalId")
+                        .HasColumnType("int");
+
                     b.Property<string>("DataConsulta")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Descricao")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("IdVeterinario")
+                        .HasColumnType("int");
 
                     b.Property<string>("Status")
                         .IsRequired()
@@ -86,17 +92,11 @@ namespace DDD.Infra.SqlServer.Migrations
                     b.Property<int>("VeterinariosUserId")
                         .HasColumnType("int");
 
-                    b.Property<int>("animalId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("idVeterinario")
-                        .HasColumnType("int");
-
                     b.HasKey("IdConsulta");
 
-                    b.HasIndex("VeterinariosUserId");
+                    b.HasIndex("AnimalId");
 
-                    b.HasIndex("animalId");
+                    b.HasIndex("VeterinariosUserId");
 
                     b.ToTable("Consultas");
                 });
@@ -215,16 +215,16 @@ namespace DDD.Infra.SqlServer.Migrations
 
             modelBuilder.Entity("DDD.Domain.ClinicaContext.Consulta", b =>
                 {
+                    b.HasOne("DDD.Domain.ClienteContext.Animal", "Animal")
+                        .WithMany()
+                        .HasForeignKey("AnimalId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("DDD.Domain.SecretariaContext.Veterinario", "Veterinarios")
                         .WithMany("Consultas")
                         .HasForeignKey("VeterinariosUserId")
                         .OnDelete(DeleteBehavior.ClientNoAction)
-                        .IsRequired();
-
-                    b.HasOne("DDD.Domain.ClienteContext.Animal", "Animal")
-                        .WithMany()
-                        .HasForeignKey("animalId")
-                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Animal");
