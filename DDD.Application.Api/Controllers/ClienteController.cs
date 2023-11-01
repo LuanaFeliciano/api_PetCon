@@ -99,14 +99,14 @@ namespace DDD.Application.Api.Controllers
             }
         }
 
-        [HttpPost("api/Clinica/IncluirAnimal")]
+        [HttpPost("IncluirAnimal")]
         public IActionResult AssociarAnimal(int id, Animal animal)
         {
             _clienteRepository.AdicionarAnimal(id, animal);
             return Ok("Animal Cadastrado com sucesso!");
         }
 
-        [HttpDelete("api/Clinica/RetirarAnimal")]
+        [HttpDelete("RetirarAnimal")]
         public ActionResult DesassociarAnimal(int id, int AnimalId)
         {
             try
