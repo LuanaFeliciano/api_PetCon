@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "ni8qglfB7O7+pm9ajdVyfjKIGuQACPlAh/zixQG4UugEzgMQavVyaLr/5wCcpLPMyTwIK+JB4Pkq7AM8hEm/dA==",
+  "dgSpecHash": "OnRzeWvhrFNWIioaQMAqDEuACdUMnlVenIpmLMU6DlzCR/Sfml/3O1ylTgkRCb4RrR4Z7SLXa4Go4+lbkr5N0g==",
   "success": true,
-  "projectFilePath": "C:\\Users\\luana\\source\\repos\\PetCon\\PlataformaPetConDDD\\DDD.Domain\\DDD.Domain.csproj",
+  "projectFilePath": "C:\\Users\\John\\Desktop\\petcon\\api_PetCon\\DDD.Domain\\DDD.Domain.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }
