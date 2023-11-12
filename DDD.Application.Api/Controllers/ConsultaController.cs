@@ -83,5 +83,14 @@ namespace DDD.Application.Api.Controllers
                 throw;
             }
         }
+
+        [HttpGet("cliente/{clienteId}")]
+        public ActionResult<List<Consulta>> GetConsultasByClienteId(int clienteId)
+        {
+            var consultas = _consultaRepository.GetConsultasByClienteId(clienteId);
+            return Content(consultas, "application/json");
+            
+        }
+
     }
 }

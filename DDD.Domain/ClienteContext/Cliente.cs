@@ -22,5 +22,8 @@ namespace DDD.Domain.ClienteContext
 
         [JsonIgnore]
         public Clinica? Clinica { get; set; } // Propriedade de navegação para a clínica associada
+
+        [JsonIgnore]
+        public List<Solicitacao>? Solicitacoes { get; set; }
     }
 }

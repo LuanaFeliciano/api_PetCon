@@ -1,0 +1,17 @@
+C:\Users\luana\source\repos\PetCon\PlataformaPetConDDD\DDD.Infra.SqlServer\bin\Release\net6.0\DDD.Infra.SqlServer.deps.json
+C:\Users\luana\source\repos\PetCon\PlataformaPetConDDD\DDD.Infra.SqlServer\bin\Release\net6.0\DDD.Infra.SqlServer.runtimeconfig.json
+C:\Users\luana\source\repos\PetCon\PlataformaPetConDDD\DDD.Infra.SqlServer\bin\Release\net6.0\DDD.Infra.SqlServer.dll
+C:\Users\luana\source\repos\PetCon\PlataformaPetConDDD\DDD.Infra.SqlServer\bin\Release\net6.0\DDD.Infra.SqlServer.pdb
+C:\Users\luana\source\repos\PetCon\PlataformaPetConDDD\DDD.Infra.SqlServer\bin\Release\net6.0\DDD.Domain.dll
+C:\Users\luana\source\repos\PetCon\PlataformaPetConDDD\DDD.Infra.SqlServer\bin\Release\net6.0\DDD.Domain.pdb
+C:\Users\luana\source\repos\PetCon\PlataformaPetConDDD\DDD.Infra.SqlServer\obj\Release\net6.0\DDD.Infra.SqlServer.csproj.AssemblyReference.cache
+C:\Users\luana\source\repos\PetCon\PlataformaPetConDDD\DDD.Infra.SqlServer\obj\Release\net6.0\DDD.Infra.SqlServer.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\luana\source\repos\PetCon\PlataformaPetConDDD\DDD.Infra.SqlServer\obj\Release\net6.0\DDD.Infra.SqlServer.AssemblyInfoInputs.cache
+C:\Users\luana\source\repos\PetCon\PlataformaPetConDDD\DDD.Infra.SqlServer\obj\Release\net6.0\DDD.Infra.SqlServer.AssemblyInfo.cs
+C:\Users\luana\source\repos\PetCon\PlataformaPetConDDD\DDD.Infra.SqlServer\obj\Release\net6.0\DDD.Infra.SqlServer.csproj.CoreCompileInputs.cache
+C:\Users\luana\source\repos\PetCon\PlataformaPetConDDD\DDD.Infra.SqlServer\obj\Release\net6.0\DDD.Infra.SqlServer.csproj.CopyComplete
+C:\Users\luana\source\repos\PetCon\PlataformaPetConDDD\DDD.Infra.SqlServer\obj\Release\net6.0\DDD.Infra.SqlServer.dll
+C:\Users\luana\source\repos\PetCon\PlataformaPetConDDD\DDD.Infra.SqlServer\obj\Release\net6.0\refint\DDD.Infra.SqlServer.dll
+C:\Users\luana\source\repos\PetCon\PlataformaPetConDDD\DDD.Infra.SqlServer\obj\Release\net6.0\DDD.Infra.SqlServer.pdb
+C:\Users\luana\source\repos\PetCon\PlataformaPetConDDD\DDD.Infra.SqlServer\obj\Release\net6.0\DDD.Infra.SqlServer.genruntimeconfig.cache
+C:\Users\luana\source\repos\PetCon\PlataformaPetConDDD\DDD.Infra.SqlServer\obj\Release\net6.0\ref\DDD.Infra.SqlServer.dll

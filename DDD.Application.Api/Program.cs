@@ -1,10 +1,13 @@
 using DDD.Infra.SqlServer;
 using DDD.Infra.SqlServer.Interfaces;
 using DDD.Infra.SqlServer.Repositories;
+using Microsoft.EntityFrameworkCore;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
+
+
 
 // Add services to the container.
 
@@ -16,11 +19,12 @@ builder.Services.AddScoped<IAnimalRepository, AnimalRepository>();
 builder.Services.AddScoped<IAuthenticateRepository, AuthenticateRepository>();
 builder.Services.AddScoped<SqlServerContext, SqlServerContext>();
 builder.Services.AddScoped<IClienteRepository, ClienteRepository>();
+builder.Services.AddScoped<ISolicitacaoRepository, SolicitacaoRepository>();
 
 builder.Services.AddControllers().AddJsonOptions(x =>
    x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.Preserve);
 
-
+//builder.Services.AddDbContext<DbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("Default Connection")));
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -31,11 +35,14 @@ var app = builder.Build();
 
 // Configure the HTTP request pipeline.
 app.UseSwagger();
-if (app.Environment.IsDevelopment())
-{
+app.UseSwaggerUI();
+//if (app.Environment.IsDevelopment())
+//{
     
-    app.UseSwaggerUI();
-}
+    
+//}
+
+
 
 app.UseHttpsRedirection();
 

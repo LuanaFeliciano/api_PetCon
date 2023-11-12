@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "IBXw/cZlw7LpyF+StHPqeq9PcGFOuxgQpI5JZtBwqfQ=",
+  "Source": "DDD.Application.Api",
+  "BasePath": "_content/DDD.Application.Api",
+  "Mode": "Default",
+  "ManifestType": "Publish",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}

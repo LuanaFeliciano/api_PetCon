@@ -15,5 +15,7 @@ namespace DDD.Infra.SqlServer.Interfaces
         public void DeleteConsulta(int id);
 
         public void UpdateConsulta(Consulta consulta);
+
+        public string GetConsultasByClienteId(int clienteId);
     }
 }

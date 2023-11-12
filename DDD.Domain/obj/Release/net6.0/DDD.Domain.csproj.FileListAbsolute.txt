@@ -1,0 +1,12 @@
+C:\Users\luana\source\repos\PetCon\PlataformaPetConDDD\DDD.Domain\bin\Release\net6.0\DDD.Domain.deps.json
+C:\Users\luana\source\repos\PetCon\PlataformaPetConDDD\DDD.Domain\bin\Release\net6.0\DDD.Domain.dll
+C:\Users\luana\source\repos\PetCon\PlataformaPetConDDD\DDD.Domain\bin\Release\net6.0\DDD.Domain.pdb
+C:\Users\luana\source\repos\PetCon\PlataformaPetConDDD\DDD.Domain\obj\Release\net6.0\DDD.Domain.csproj.AssemblyReference.cache
+C:\Users\luana\source\repos\PetCon\PlataformaPetConDDD\DDD.Domain\obj\Release\net6.0\DDD.Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\luana\source\repos\PetCon\PlataformaPetConDDD\DDD.Domain\obj\Release\net6.0\DDD.Domain.AssemblyInfoInputs.cache
+C:\Users\luana\source\repos\PetCon\PlataformaPetConDDD\DDD.Domain\obj\Release\net6.0\DDD.Domain.AssemblyInfo.cs
+C:\Users\luana\source\repos\PetCon\PlataformaPetConDDD\DDD.Domain\obj\Release\net6.0\DDD.Domain.csproj.CoreCompileInputs.cache
+C:\Users\luana\source\repos\PetCon\PlataformaPetConDDD\DDD.Domain\obj\Release\net6.0\DDD.Domain.dll
+C:\Users\luana\source\repos\PetCon\PlataformaPetConDDD\DDD.Domain\obj\Release\net6.0\refint\DDD.Domain.dll
+C:\Users\luana\source\repos\PetCon\PlataformaPetConDDD\DDD.Domain\obj\Release\net6.0\DDD.Domain.pdb
+C:\Users\luana\source\repos\PetCon\PlataformaPetConDDD\DDD.Domain\obj\Release\net6.0\ref\DDD.Domain.dll

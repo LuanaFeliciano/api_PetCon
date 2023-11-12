@@ -36,7 +36,7 @@ namespace DDD.Application.Api.Controllers
         }
 
 
-        [HttpPost("api/Clinica/Create")] // Método para criar uma clínica
+        [HttpPost("Create")] // Método para criar uma clínica
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public ActionResult<Clinica> CreateClinica(Clinica clinica)
@@ -84,7 +84,7 @@ namespace DDD.Application.Api.Controllers
             }
         }
 
-        [HttpPost("api/Clinica/Login")]
+        [HttpPost("Login")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         public ActionResult Login(string email, string senha)

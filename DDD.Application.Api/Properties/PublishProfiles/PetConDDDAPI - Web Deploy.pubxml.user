@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+Esse arquivo é usado pelo processo de publicação/pacote do seu projeto Web. É possível personalizar o comportamento deste processo
+ao editar este arquivo MSBuild. Para saber mais sobre isso, visite https://go.microsoft.com/fwlink/?LinkID=208121. 
+-->
+<Project>
+  <PropertyGroup>
+    <TimeStampOfAssociatedLegacyPublishXmlFile />
+    <EncryptedPassword>AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAWljtNabQvUiXgv3WjA135QAAAAACAAAAAAAQZgAAAAEAACAAAAAEpLpRYLeqJjkJv5rgpQWa5WmCKZaZEduoRwCD2tiJFgAAAAAOgAAAAAIAACAAAAApOOUM070FkQte23kWXSREeAGY+PmYfQoXa6OkxNt0Q4AAAADxyntS8P7yQDVtymEUClrNYH25sIoIPFsYle5Gi3jBLimkhXzBCHMNA9T8u59083gCAX8HGSZC6vHJ3cmXnGJ4QIsKkBSjN1mrSNu22s2JneT4oKrCITn6L1tj0f5mzRLR+Uo2kTEek5V6P2QjV6JvWcqCP48tzhBhZte7lVcGVkAAAAAQsXfgkipq+6EdM/RkPIm36AyeSZ5Og+PlH6MN8uHagYxR0BPzQ/tX5K12vnRHzwxocNZ/yXtSJPSdcK0PcO0Q</EncryptedPassword>
+    <History>True|2023-11-07T22:25:22.5390591Z;True|2023-11-07T19:21:00.7216912-03:00;False|2023-11-07T19:19:49.1514049-03:00;True|2023-11-07T19:14:23.0891941-03:00;True|2023-11-02T11:27:43.6614786-03:00;True|2023-11-01T21:10:47.6511768-03:00;True|2023-11-01T21:03:30.9118494-03:00;True|2023-11-01T20:49:52.7931065-03:00;True|2023-11-01T20:06:29.0844176-03:00;True|2023-11-01T20:04:21.5410608-03:00;</History>
+    <LastFailureDetails />
+  </PropertyGroup>
+  <ItemGroup>
+    <DestinationConnectionStrings Include="DefaultConnection">
+      <Value>Server=tcp:petcon.database.windows.net,1433%3bInitial Catalog=PetConDatabase%3bPersist Security Info=False%3bUser ID=PetConUser%3bPassword=PetCon2023%3bMultipleActiveResultSets=False%3bEncrypt=True%3bTrustServerCertificate=False%3bConnection Timeout=30%3b</Value>
+    </DestinationConnectionStrings>
+  </ItemGroup>
+</Project>

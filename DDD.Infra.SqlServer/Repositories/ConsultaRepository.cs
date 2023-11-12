@@ -109,6 +109,29 @@ namespace DDD.Infra.SqlServer.Repositories
                 throw ex;
             }
         }
+
+        public string GetConsultasByClienteId(int clienteId)
+        {
+            var consultas = _context.Consultas
+                .Where(c => c.Animal.ClienteId == clienteId)
+                .Include(c => c.Veterinarios)
+                    .ThenInclude(v => v.Clinica)
+                .Include(c => c.Animal)
+                    .ThenInclude(a => a.Clientes)
+                .ToList();
+
+
+            var options = new JsonSerializerOptions
+            {
+                ReferenceHandler = ReferenceHandler.IgnoreCycles,
+                // Outras configurações...
+            };
+
+            var jsonString = JsonSerializer.Serialize(consultas, options);
+
+            return jsonString;
+        }
+
     }
 
 }

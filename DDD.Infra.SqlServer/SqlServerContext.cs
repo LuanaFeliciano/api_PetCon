@@ -10,8 +10,12 @@ namespace DDD.Infra.SqlServer
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
+            //optionsBuilder.UseSqlServer("Server=tcp:petcon.database.windows.net,1433;Initial Catalog=PetConDatabase;Persist Security Info=False;User ID=PetConUser;Password=PetCon2023;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
             optionsBuilder.UseSqlServer("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=PetConDb");
+
         }
+
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
 
@@ -20,6 +24,18 @@ namespace DDD.Infra.SqlServer
                 .HasOne(a => a.Clientes)
                 .WithMany(c => c.Animais)
                 .HasForeignKey(a => a.ClienteId);
+
+            modelBuilder.Entity<Solicitacao>()
+                .HasOne(s => s.Cliente)
+                .WithMany(c => c.Solicitacoes)
+                .HasForeignKey(s => s.ClienteId)
+                .OnDelete(DeleteBehavior.Restrict); 
+
+            modelBuilder.Entity<Solicitacao>()
+                .HasOne(s => s.Animal)
+                .WithMany(a => a.Solicitacoes)
+                .HasForeignKey(s => s.AnimalId)
+                .OnDelete(DeleteBehavior.Restrict);
 
             // Configuração do relacionamento entre Clinica e Veterinario
             modelBuilder.Entity<Clinica>()
@@ -42,6 +58,8 @@ namespace DDD.Infra.SqlServer
     .HasOne(c => c.Veterinarios)
     .WithMany(v => v.Consultas)
     .OnDelete(DeleteBehavior.ClientNoAction);
+
+
 
 
 
@@ -70,6 +88,9 @@ namespace DDD.Infra.SqlServer
 
             modelBuilder.Entity<Consulta>()
                 .HasKey(c => c.IdConsulta);
+
+            modelBuilder.Entity<Solicitacao>()
+                .HasKey(c => c.SolicitacaoId);
         }
 
         public DbSet<Clinica> Clinicas { get; set; }
@@ -78,6 +99,8 @@ namespace DDD.Infra.SqlServer
         public DbSet<Consulta> Consultas { get; set; }
         public DbSet<Animal> Animais { get; set; }
         public DbSet<Cliente> Clientes { get; set; }
+
+        public DbSet<Solicitacao> Solicitacoes { get; set; }
 
     }
 }

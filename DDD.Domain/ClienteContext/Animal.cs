@@ -27,5 +27,8 @@ namespace DDD.Domain.ClienteContext
         
         public Cliente? Clientes { get; set; } // Propriedade de navegação para o cliente associado
 
+        [JsonIgnore]
+        public List<Solicitacao>? Solicitacoes { get; set; }
+
     }
 }

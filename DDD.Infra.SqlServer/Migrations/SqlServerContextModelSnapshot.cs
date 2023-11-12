@@ -64,6 +64,41 @@ namespace DDD.Infra.SqlServer.Migrations
                     b.ToTable("Animais");
                 });
 
+            modelBuilder.Entity("DDD.Domain.ClienteContext.Solicitacao", b =>
+                {
+                    b.Property<int>("SolicitacaoId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("SolicitacaoId"));
+
+                    b.Property<int>("AnimalId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ClienteId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Descricao")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Periodo")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Urgencia")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("SolicitacaoId");
+
+                    b.HasIndex("AnimalId");
+
+                    b.HasIndex("ClienteId");
+
+                    b.ToTable("Solicitacoes");
+                });
+
             modelBuilder.Entity("DDD.Domain.ClinicaContext.Consulta", b =>
                 {
                     b.Property<int>("IdConsulta")
@@ -213,6 +248,25 @@ namespace DDD.Infra.SqlServer.Migrations
                     b.Navigation("Clientes");
                 });
 
+            modelBuilder.Entity("DDD.Domain.ClienteContext.Solicitacao", b =>
+                {
+                    b.HasOne("DDD.Domain.ClienteContext.Animal", "Animal")
+                        .WithMany("Solicitacoes")
+                        .HasForeignKey("AnimalId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("DDD.Domain.ClienteContext.Cliente", "Cliente")
+                        .WithMany("Solicitacoes")
+                        .HasForeignKey("ClienteId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Animal");
+
+                    b.Navigation("Cliente");
+                });
+
             modelBuilder.Entity("DDD.Domain.ClinicaContext.Consulta", b =>
                 {
                     b.HasOne("DDD.Domain.ClienteContext.Animal", "Animal")
@@ -254,6 +308,11 @@ namespace DDD.Infra.SqlServer.Migrations
                     b.Navigation("Clinica");
                 });
 
+            modelBuilder.Entity("DDD.Domain.ClienteContext.Animal", b =>
+                {
+                    b.Navigation("Solicitacoes");
+                });
+
             modelBuilder.Entity("DDD.Domain.SecretariaContext.Clinica", b =>
                 {
                     b.Navigation("Clientes");
@@ -264,6 +323,8 @@ namespace DDD.Infra.SqlServer.Migrations
             modelBuilder.Entity("DDD.Domain.ClienteContext.Cliente", b =>
                 {
                     b.Navigation("Animais");
+
+                    b.Navigation("Solicitacoes");
                 });
 
             modelBuilder.Entity("DDD.Domain.SecretariaContext.Veterinario", b =>
