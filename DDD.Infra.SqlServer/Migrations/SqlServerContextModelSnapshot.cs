@@ -72,21 +72,31 @@ namespace DDD.Infra.SqlServer.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdConsulta"));
 
-                    b.Property<DateTime>("DataConsulta")
-                        .HasColumnType("datetime2");
+                    b.Property<int>("AnimalId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("DataConsulta")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Descricao")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("IdVeterinario")
                         .HasColumnType("int");
-
-                    b.Property<string>("Observacoes")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Status")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("VeterinariosUserId")
+                        .HasColumnType("int");
+
                     b.HasKey("IdConsulta");
+
+                    b.HasIndex("AnimalId");
+
+                    b.HasIndex("VeterinariosUserId");
 
                     b.ToTable("Consultas");
                 });
@@ -134,6 +144,10 @@ namespace DDD.Infra.SqlServer.Migrations
                     b.Property<bool>("Ativo")
                         .HasColumnType("bit");
 
+                    b.Property<string>("CPF")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<DateTime>("DataCadastro")
                         .HasColumnType("datetime2");
 
@@ -167,8 +181,9 @@ namespace DDD.Infra.SqlServer.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Telefone")
-                        .HasColumnType("int");
+                    b.Property<string>("Telefone")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasIndex("ClinicaId");
 
@@ -182,12 +197,7 @@ namespace DDD.Infra.SqlServer.Migrations
                     b.Property<int>("ClinicaId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("ConsultaIdConsulta")
-                        .HasColumnType("int");
-
                     b.HasIndex("ClinicaId");
-
-                    b.HasIndex("ConsultaIdConsulta");
 
                     b.ToTable("Veterinarios");
                 });
@@ -201,6 +211,25 @@ namespace DDD.Infra.SqlServer.Migrations
                         .IsRequired();
 
                     b.Navigation("Clientes");
+                });
+
+            modelBuilder.Entity("DDD.Domain.ClinicaContext.Consulta", b =>
+                {
+                    b.HasOne("DDD.Domain.ClienteContext.Animal", "Animal")
+                        .WithMany()
+                        .HasForeignKey("AnimalId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("DDD.Domain.SecretariaContext.Veterinario", "Veterinarios")
+                        .WithMany("Consultas")
+                        .HasForeignKey("VeterinariosUserId")
+                        .OnDelete(DeleteBehavior.ClientNoAction)
+                        .IsRequired();
+
+                    b.Navigation("Animal");
+
+                    b.Navigation("Veterinarios");
                 });
 
             modelBuilder.Entity("DDD.Domain.ClienteContext.Cliente", b =>
@@ -222,16 +251,7 @@ namespace DDD.Infra.SqlServer.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("DDD.Domain.ClinicaContext.Consulta", null)
-                        .WithMany("Veterinarios")
-                        .HasForeignKey("ConsultaIdConsulta");
-
                     b.Navigation("Clinica");
-                });
-
-            modelBuilder.Entity("DDD.Domain.ClinicaContext.Consulta", b =>
-                {
-                    b.Navigation("Veterinarios");
                 });
 
             modelBuilder.Entity("DDD.Domain.SecretariaContext.Clinica", b =>
@@ -244,6 +264,11 @@ namespace DDD.Infra.SqlServer.Migrations
             modelBuilder.Entity("DDD.Domain.ClienteContext.Cliente", b =>
                 {
                     b.Navigation("Animais");
+                });
+
+            modelBuilder.Entity("DDD.Domain.SecretariaContext.Veterinario", b =>
+                {
+                    b.Navigation("Consultas");
                 });
 #pragma warning restore 612, 618
         }

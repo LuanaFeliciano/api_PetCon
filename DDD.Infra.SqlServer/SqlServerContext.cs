@@ -14,11 +14,36 @@ namespace DDD.Infra.SqlServer
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+
+            
+            modelBuilder.Entity<Animal>()
+                .HasOne(a => a.Clientes)
+                .WithMany(c => c.Animais)
+                .HasForeignKey(a => a.ClienteId);
+
             // Configuração do relacionamento entre Clinica e Veterinario
             modelBuilder.Entity<Clinica>()
                 .HasMany(clinica => clinica.Veterinarios) // Uma clínica tem muitos veterinários
                 .WithOne(veterinario => veterinario.Clinica) // Um veterinário pertence a uma única clínica
                 .HasForeignKey(veterinario => veterinario.ClinicaId); // Chave estrangeira em Veterinario
+
+            modelBuilder.Entity<Veterinario>()
+                .HasMany(e => e.Animais)
+                .WithMany(e => e.Veterinarios)
+                .UsingEntity<Consulta>();
+
+
+                    modelBuilder.Entity<Consulta>()
+                        .HasOne(c => c.Veterinarios)
+                        .WithMany(v => v.Consultas)
+                        .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<Consulta>()
+    .HasOne(c => c.Veterinarios)
+    .WithMany(v => v.Consultas)
+    .OnDelete(DeleteBehavior.ClientNoAction);
+
+
 
 
             // Configuração do relacionamento entre Clinica e Cliente
@@ -45,9 +70,6 @@ namespace DDD.Infra.SqlServer
 
             modelBuilder.Entity<Consulta>()
                 .HasKey(c => c.IdConsulta);
-
-
-
         }
 
         public DbSet<Clinica> Clinicas { get; set; }

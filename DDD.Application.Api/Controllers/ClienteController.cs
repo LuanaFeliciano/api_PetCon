@@ -34,6 +34,12 @@ namespace DDD.Application.Api.Controllers
             return Ok(_clienteRepository.GetClienteById(id));
         }
 
+        [HttpGet("PesquisarPorCPF/{cpf}")]
+        public ActionResult<Cliente> GetByCPF(string cpf)
+        {
+            return Ok(_clienteRepository.GetClienteByCPF(cpf));
+        }
+
         [HttpGet("{clinicaId}/clientes")]
         public ActionResult ClientesDaClinica(int clinicaId)
         {
@@ -53,7 +59,7 @@ namespace DDD.Application.Api.Controllers
         public IActionResult InsertCliente(int clinicaId, Cliente cliente)
         {
             _clienteRepository.InsertCliente(clinicaId, cliente);
-            return Ok("Cliente Cadastrado com sucesso!");
+            return CreatedAtAction(nameof(GetById), new { id = cliente.UserId }, cliente);
         }
 
         [HttpPut]
@@ -93,14 +99,14 @@ namespace DDD.Application.Api.Controllers
             }
         }
 
-        [HttpPost("api/Clinica/IncluirAnimal")]
+        [HttpPost("IncluirAnimal")]
         public IActionResult AssociarAnimal(int id, Animal animal)
         {
             _clienteRepository.AdicionarAnimal(id, animal);
             return Ok("Animal Cadastrado com sucesso!");
         }
 
-        [HttpDelete("api/Clinica/RetirarAnimal")]
+        [HttpDelete("RetirarAnimal")]
         public ActionResult DesassociarAnimal(int id, int AnimalId)
         {
             try
@@ -115,7 +121,7 @@ namespace DDD.Application.Api.Controllers
         }
 
 
-        [HttpPost("api/Clinica/Login")]
+        [HttpPost("api/Cliente/Login")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         public ActionResult Login(string email, string senha)
@@ -125,14 +131,14 @@ namespace DDD.Application.Api.Controllers
                 return BadRequest("Email e senha são obrigatórios.");
             }
 
-            var clinica = _authenticationRepository.AuthenticateCliente(email, senha);
+            var cliente = _authenticationRepository.AuthenticateCliente(email, senha);
 
-            if (clinica == null)
+            if (cliente == null)
             {
                 return Unauthorized("Email ou senha incorretos.");
             }
 
-            return Ok("Login bem-sucedido");
+            return Ok(new { Message = "Login bem-sucedido", ClienteId = cliente.UserId, documento = cliente.CPF, clincia = cliente.ClinicaId });
         }
 
     }

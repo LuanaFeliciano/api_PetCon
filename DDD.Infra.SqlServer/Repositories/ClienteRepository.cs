@@ -24,6 +24,16 @@ namespace DDD.Infra.SqlServer.Repositories
             return _context.Clientes.Find(id);
         }
 
+        public Cliente GetClienteByCPF(string cpf)
+        {
+            string cpfString = cpf.ToString();
+
+            var cliente = _context.Clientes
+                .FirstOrDefault(v => v.CPF == cpfString);
+
+            return cliente;
+        }
+
         public List<Cliente> GetCliente()
         {
 
