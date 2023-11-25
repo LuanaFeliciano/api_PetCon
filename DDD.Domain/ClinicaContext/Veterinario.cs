@@ -13,7 +13,8 @@ namespace DDD.Domain.SecretariaContext
     public class Veterinario : User
     {
         public int ClinicaId { get; set; } // Propriedade que representa a associação à clínica
-
+        public string Telefone { get; set; }
+        
         [JsonIgnore]
         public List<Animal>? Animais { get; set; }
 
